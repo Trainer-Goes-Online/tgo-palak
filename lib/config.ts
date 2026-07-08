@@ -22,14 +22,20 @@ export const pricing = {
   },
 } as const;
 
+/** Canonical site origin (no trailing slash). Drives metadata + CAPI URLs. */
+export const siteUrl = (
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://vsl.palaksachdeva.com"
+).replace(/\/+$/, "");
+
 export const brand = {
   name: "FitWithPalak",
   supportEmail: "teamfitwithpalak@gmail.com",
   /** Timezone used to format payment_date / payment_time in the Pabbly payload. */
   paymentTimezone: "Asia/Kolkata",
+  /** Canonical site origin, e.g. https://vsl.palaksachdeva.com */
+  siteUrl,
   /** Canonical checkout URL for CAPI event_source_url (query stripped). */
-  checkoutUrl:
-    process.env.NEXT_PUBLIC_CHECKOUT_URL ?? "https://fitwithpalak.com/checkout",
+  checkoutUrl: process.env.NEXT_PUBLIC_CHECKOUT_URL ?? `${siteUrl}/checkout`,
 } as const;
 
 /** Formatted price for display, e.g. "₹599". */

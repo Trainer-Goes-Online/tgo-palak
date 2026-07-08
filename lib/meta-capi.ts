@@ -96,7 +96,7 @@ export async function sendMetaCapiEvent(params: {
     event_time: Math.floor(Date.now() / 1000),
     event_id: params.paymentId,
     action_source: "website" as const,
-    event_source_url: toOrigin(params.eventSourceUrl, "https://fitwithpalak.com"),
+    event_source_url: toOrigin(params.eventSourceUrl, "https://vsl.palaksachdeva.com"),
     user_data: {
       ...(hashedEmail && { em: [hashedEmail] }),
       ...(hashedPhone && { ph: [hashedPhone] }),

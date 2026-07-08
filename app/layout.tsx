@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
 import Script from "next/script";
+import { siteUrl } from "@/lib/config";
 
 const GA4_ID = process.env.NEXT_PUBLIC_GA4_ID;
 const CLARITY_ID = process.env.NEXT_PUBLIC_CLARITY_ID;
 const META_PIXEL_ID = process.env.NEXT_PUBLIC_META_PIXEL_ID;
 
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: "FitWithPalak | Clinical Functional Nutrition",
   description:
     "For women whose reports come back normal while their body clearly is not. Book a 30-minute clinical assessment with Palak.",
