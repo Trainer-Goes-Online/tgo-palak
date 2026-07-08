@@ -162,6 +162,7 @@ export default function FunnelEffects({
         const video = document.createElement("video");
         video.className = "pk-vsl-frame";
         video.src = src;
+        video.poster = "/assets/vsl-poster.jpg";
         video.controls = true;
         video.autoplay = true;
         video.playsInline = true;
