@@ -1,0 +1,101 @@
+FITWITHPALAK — INFOGRAPHIC IMAGE PROMPTS (for ChatGPT / GPT image model)
+================================================================================
+How to use: paste ONE prompt block below into the image model. Each prompt already
+carries the FitWithPalak look so the image sits naturally beside the on-page copy.
+Generate at portrait 4:5 (best beside a text column) unless noted. After you get an
+output, paste it back here and we will refine wording, composition, or palette.
+
+
+--------------------------------------------------------------------------------
+[A] SHARED STYLE + PALETTE (baked into every prompt below — here for reference)
+--------------------------------------------------------------------------------
+Brand: FitWithPalak, a premium clinical-functional-nutrition brand for urban Indian
+women aged 28-40 on thyroid medication. Voice is calm, clinical, reassuring, never
+loud. Aesthetic = modern editorial wellness, soft and expensive, lots of negative
+space.
+
+Exact palette (use these, nothing neon, no primary blue/green):
+  - Canvas / background: near-white warm blush  #FDF7FA  to  #F7EEF3
+  - Brand pink (primary accent):                #E479AF
+  - Deep rose (for line work, labels):          #B23A78
+  - Deep plum / wine (dark anchor):             #6F2349  to  #3A1528
+  - Pale pink glow / highlight:                 #FFE1F0
+  - Ink text tone (if any):                     #2E1622 (deep plum-black)
+Fonts if any text appears: elegant serif for large words (Lora/Newsreader style),
+clean geometric sans or mono for tiny labels. Keep baked-in text to an absolute
+minimum (0-4 short words); the page already has the words.
+
+Rendering: soft studio lighting, gentle grain, subtle depth, rounded geometry, thin
+1-1.5px line-art icons in deep rose, tasteful glow around the pink. Flat-editorial
+infographic (not clip-art, not corporate stock, not 3D plastic). Transparent or
+solid #FDF7FA background. High detail, crisp, print-quality.
+
+
+--------------------------------------------------------------------------------
+[B] SECTION 2 — "THE MIRROR"  (the text-heavy section that reads:
+    "On the outside you have it all together. On the inside your body feels like it
+     is working against you.")
+    Goal: one infographic that shows the OUTSIDE-vs-INSIDE contrast at a glance, so a
+    visitor grasps the idea before reading the paragraph beside it.
+--------------------------------------------------------------------------------
+PROMPT:
+A refined editorial wellness infographic, portrait 4:5, for a premium Indian
+women's clinical-nutrition brand. Split composition showing one calm, put-together
+Indian woman in her mid-thirties on the LEFT half — poised, softly lit, in a cream
+blouse, looking composed and "having it all together" — rendered in warm near-white
+tones (#FDF7FA) with a soft brand-pink (#E479AF) rim light. On the RIGHT half, the
+SAME silhouette dissolves into a delicate anatomical / diagnostic overlay in deep
+plum and rose line-art (#B23A78 on a deep-plum #6F2349 panel): thin glowing icons
+for thyroid, gut, energy/battery low, and hormone balance, connected by fine lines,
+suggesting the body quietly struggling "on the inside." A soft vertical seam of pale
+pink glow (#FFE1F0) divides the calm light side from the clinical dark side. Elegant,
+lots of negative space, gentle film grain, thin 1.5px line icons, no harsh colors,
+no neon, no blue or green. Minimal or zero text. Palette strictly: #FDF7FA, #E479AF,
+#B23A78, #6F2349, #3A1528, #FFE1F0. Calm, expensive, reassuring, editorial — not
+corporate stock, not clip-art, not 3D. Crisp and high-detail.
+
+ALT / SIMPLER VERSION (icon-only, no human figure — if the portrait feels too busy):
+A minimal editorial infographic, portrait 4:5, on a warm near-white background
+(#FDF7FA). Two stacked rounded panels connected by a thin line. TOP panel labelled
+feel "on the outside": a serene, tidy line-art scene (a woman's calm profile, a neat
+checklist, a walking figure, a plate) drawn in thin deep-rose lines (#B23A78) with a
+soft pink glow (#E479AF). BOTTOM panel "on the inside": a deep plum/wine card
+(#6F2349 to #3A1528) with delicate glowing line icons of thyroid, gut, low battery,
+and disrupted rhythm in bright brand pink (#E479AF), quietly signalling internal
+strain. Elegant, spacious, film-grain, no neon, no blue/green, minimal text (at most
+the tiny words "OUTSIDE" and "INSIDE" in a small mono font). Strict palette: #FDF7FA,
+#E479AF, #B23A78, #6F2349, #3A1528, #FFE1F0. Premium, calm, clinical, editorial.
+
+
+--------------------------------------------------------------------------------
+[C] REUSABLE TEMPLATE for the OTHER sections (fill the CAPS parts, keep style line)
+--------------------------------------------------------------------------------
+A refined editorial wellness infographic, portrait 4:5, for a premium Indian
+women's clinical-nutrition brand. Concept: DESCRIBE THE ONE IDEA OF THE SECTION IN
+ONE SENTENCE. Show it as THE VISUAL DEVICE (e.g. a 4-step vertical journey / a ledger
+of 4 root causes / an absorption diagram). Use thin 1.5px deep-rose line icons
+(#B23A78), brand-pink accents and glow (#E479AF), on a warm near-white canvas
+(#FDF7FA), with deep-plum (#6F2349) used only for a single anchor element. Elegant,
+airy, film-grain, rounded geometry, minimal-to-zero baked-in text, no neon, no blue
+or green. Strict palette: #FDF7FA, #E479AF, #B23A78, #6F2349, #3A1528, #FFE1F0.
+Calm, expensive, clinical, editorial — not stock, not clip-art, not 3D.
+
+Section ideas to slot into the template when you are ready:
+  - "The four root causes" (gut / blood sugar / vitamins / nervous system) -> a clean
+    vertical ledger of four glowing line-icon rows.
+  - "How healing actually works" (4 ordered steps: see the picture -> heal the gut ->
+    repair metabolism -> calm the nervous system) -> a numbered vertical journey/spine
+    with a glowing pink progress line (mirrors the site's existing timeline).
+  - "Why eating clean changes nothing" -> an absorption diagram: food/supplements in,
+    a blocked gut, nothing reaching the body.
+
+
+--------------------------------------------------------------------------------
+NOTES
+--------------------------------------------------------------------------------
+- Ask the model for a TRANSPARENT background (or solid #FDF7FA) so it drops cleanly
+  beside the copy.
+- If the model bakes in unwanted text or wrong colors, reply here with the result and
+  we will tighten the prompt (add "no text", restate the hex list, or switch to the
+  icon-only ALT version).
+- Keep every image in the same palette so all sections read as one system.

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { captureTrackingParams } from "@/lib/tracking";
 
 /* Client-side conversion polish for the FitWithPalak Clinical Track page:
    - a top scroll-progress rail
@@ -13,8 +14,10 @@ import { useEffect, useRef } from "react";
    prefers-reduced-motion. */
 export default function FunnelEffects({
   bookHref = "#book",
+  sticky = true,
 }: {
   bookHref?: string;
+  sticky?: boolean;
 }) {
   const fillRef = useRef<HTMLSpanElement>(null);
   const stickyRef = useRef<HTMLAnchorElement>(null);
@@ -23,6 +26,9 @@ export default function FunnelEffects({
     const fill = fillRef.current;
     const sticky = stickyRef.current;
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    // Capture UTM / fbclid on landing so they survive to /checkout order notes.
+    captureTrackingParams();
 
     // --- The method journey spine: pre-measure each node's fractional position.
     const journey = document.querySelector<HTMLElement>(".pk-journey");
@@ -115,21 +121,64 @@ export default function FunnelEffects({
       measureNodes();
     }
 
+    // --- The "next step" walkaway ledger: ignite each number as its row scrolls
+    //     into view (fail-open: CSS leaves them lit without JS / reduced-motion).
+    let waIo: IntersectionObserver | null = null;
+    const walkaway = document.querySelector<HTMLElement>(".pk-walkaway");
+    if (!reduce && walkaway && "IntersectionObserver" in window) {
+      walkaway.classList.add("armed");
+      waIo = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("is-active");
+              waIo?.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.6 }
+      );
+      walkaway.querySelectorAll<HTMLElement>(".pk-wa").forEach((el) => waIo!.observe(el));
+    }
+
+    // --- Case-study thumbnails: if a thumb fails to load (not wired yet), hide it
+    //     so the clean pink gradient stands instead of a broken-image + alt text.
+    document.querySelectorAll<HTMLImageElement>(".pk-case-thumb").forEach((img) => {
+      const hide = () => { img.style.display = "none"; };
+      if (img.complete && img.naturalWidth === 0) hide();
+      img.addEventListener("error", hide);
+    });
+
     // --- VSL play affordance: swap the poster frame for the real embed on click.
     const vsl = document.querySelector<HTMLElement>(".pk-vsl");
     const onPlay = () => {
       if (!vsl || vsl.classList.contains("playing")) return;
       const src = vsl.getAttribute("data-video-src");
-      if (!src) return; // no embed wired yet -> keep the clean poster frame
+      if (!src) return; // no video wired yet -> keep the clean poster frame
       vsl.classList.add("playing");
-      const frame = document.createElement("iframe");
-      frame.className = "pk-vsl-frame";
-      frame.src = src;
-      frame.title = "FitWithPalak clinical track video";
-      frame.allow =
-        "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
-      frame.setAttribute("allowfullscreen", "");
-      vsl.appendChild(frame);
+      const isFile = /\.(mp4|webm|mov|m4v)(\?|$)/i.test(src);
+      if (isFile) {
+        // Direct video file (our DigitalOcean CDN) -> HTML5 <video> player.
+        const video = document.createElement("video");
+        video.className = "pk-vsl-frame";
+        video.src = src;
+        video.controls = true;
+        video.autoplay = true;
+        video.playsInline = true;
+        video.setAttribute("playsinline", "");
+        video.play().catch(() => {});
+        vsl.appendChild(video);
+      } else {
+        // Embeddable player (YouTube/Vimeo) -> iframe.
+        const frame = document.createElement("iframe");
+        frame.className = "pk-vsl-frame";
+        frame.src = src;
+        frame.title = "FitWithPalak clinical track video";
+        frame.allow =
+          "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
+        frame.setAttribute("allowfullscreen", "");
+        vsl.appendChild(frame);
+      }
     };
     if (vsl) {
       vsl.addEventListener("click", onPlay);
@@ -186,6 +235,7 @@ export default function FunnelEffects({
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onResize);
       io?.disconnect();
+      waIo?.disconnect();
       vsl?.removeEventListener("click", onPlay);
       caseHandlers.forEach(({ el, onClick, onKeydown }) => {
         el.removeEventListener("click", onClick);
@@ -201,20 +251,22 @@ export default function FunnelEffects({
         <span ref={fillRef} />
       </div>
 
-      <a className="sticky-cta" ref={stickyRef} href={bookHref} aria-label="Book My Clarity Call, Rs.599">
-        <div className="pk-sticky-inner">
-          <div className="pk-sticky-text">
-            <span className="pk-sticky-lead">A 30-minute clinical assessment</span>
-            <span className="pk-sticky-sub">1:1 with Palak &middot; clarity or your fee back</span>
+      {sticky && (
+        <a className="sticky-cta" ref={stickyRef} href={bookHref} aria-label="Book My Clarity Call, ₹599">
+          <div className="pk-sticky-inner">
+            <div className="pk-sticky-text">
+              <span className="pk-sticky-lead">A 30-minute clinical assessment</span>
+              <span className="pk-sticky-sub">1:1 with Palak &middot; clarity or your fee back</span>
+            </div>
+            <span className="pk-sticky-btn">
+              Book My Clarity Call ₹599
+              <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M4 10h11M11 5.5L15.5 10 11 14.5" />
+              </svg>
+            </span>
           </div>
-          <span className="pk-sticky-btn">
-            Book My Clarity Call (Rs.599)
-            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-              <path d="M4 10h11M11 5.5L15.5 10 11 14.5" />
-            </svg>
-          </span>
-        </div>
-      </a>
+        </a>
+      )}
     </>
   );
 }

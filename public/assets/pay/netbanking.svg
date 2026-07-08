@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 40" role="img" aria-label="Net Banking">
+  <g fill="none" stroke="#2b3a4a" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M14 17 L26 10 L38 17"/>
+    <path d="M15.5 17 v9 M20.5 17 v9 M31.5 17 v9 M36.5 17 v9"/>
+    <path d="M12 27 h28"/>
+  </g>
+  <text x="47" y="25" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="700" fill="#2b3a4a">NetBanking</text>
+</svg>

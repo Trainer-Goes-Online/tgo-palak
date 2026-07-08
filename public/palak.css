@@ -114,6 +114,11 @@ p em, li em, span em { font-family:var(--f-sans); font-style:normal; font-weight
 @keyframes ctaShine { 0%{left:-60%} 60%,100%{left:130%} }
 .cta-big:hover { transform:translateY(-2px) scale(1.02); animation:none; }
 .cta-big > * { position:relative; z-index:3; }
+/* mobile: the big pill must fit the viewport — shrink type/padding, go full-width */
+@media (max-width:560px){
+  .cta-big { font-size:16px; padding:17px 22px; gap:9px; width:100%; max-width:100%; justify-content:center; }
+  .cta-big svg { width:18px; height:18px; }
+}
 
 /* BOTTOM sticky CTA bar: slides up + continuous gold shine */
 .sticky-cta { position:fixed; left:0; right:0; bottom:0; z-index:50; overflow:hidden; isolation:isolate;
@@ -164,8 +169,24 @@ p em, li em, span em { font-family:var(--f-sans); font-style:normal; font-weight
 .scroll-progress > span { display:block; height:100%; width:0;
   background:linear-gradient(90deg,var(--accent-deep),var(--accent)); box-shadow:0 0 10px -1px var(--accent); }
 
-.pk-topstrip { gap:16px 26px; }   /* uses .urgency-strip base */
+.pk-topstrip { gap:0; padding-left:0; padding-right:0; }   /* uses .urgency-strip base; ticker owns spacing */
 .pk-topstrip .sep { opacity:.45; }
+/* Ticker: a centered static line on desktop, a smooth marquee on mobile so the
+   three assurances never wrap into a broken stack. */
+.pk-ticker { display:flex; align-items:center; }
+.pk-ticker-grp { display:flex; align-items:center; gap:16px 26px; flex:none; padding:0 13px; white-space:nowrap; }
+@media (min-width:721px){
+  .pk-topstrip { justify-content:center; }
+  .pk-ticker { justify-content:center; }
+  .pk-ticker-grp + .pk-ticker-grp { display:none; }   /* one group, centered */
+}
+@media (max-width:720px){
+  .pk-topstrip { justify-content:flex-start; flex-wrap:nowrap; }
+  .pk-ticker { width:max-content; animation:tickerScroll 24s linear infinite; }
+  .pk-ticker-grp { gap:14px; }
+}
+@keyframes tickerScroll { from { transform:translateX(0); } to { transform:translateX(-50%); } }
+@media (prefers-reduced-motion:reduce){ .pk-ticker { animation:none; } }
 
 .pk-nav { position:sticky; top:0; z-index:40; border-bottom:1px solid var(--hair);
   backdrop-filter:saturate(180%) blur(18px); -webkit-backdrop-filter:saturate(180%) blur(18px);
@@ -179,6 +200,12 @@ p em, li em, span em { font-family:var(--f-sans); font-style:normal; font-weight
   text-decoration:none; padding:9px 16px; border:1px solid color-mix(in oklab,var(--accent) 40%,transparent);
   border-radius:999px; transition:background .25s ease; }
 .pk-nav-cta:hover { background:color-mix(in oklab,var(--accent) 10%,transparent); }
+/* mobile: centre the brand and drop the nav pill (the hero CTA + sticky bar cover booking) */
+@media (max-width:560px){
+  .pk-nav-inner { justify-content:center; }
+  .pk-nav-cta { display:none; }
+  .pk-brand-word { font-size:20px; }
+}
 
 /* =============================================================== 2 · HERO */
 .pk-hero { position:relative; isolation:isolate; overflow:hidden;
@@ -226,8 +253,14 @@ p em, li em, span em { font-family:var(--f-sans); font-style:normal; font-weight
 .pk-vsl-cap { display:flex; align-items:center; justify-content:center; gap:10px; flex-wrap:wrap;
   font-family:var(--f-mono); font-size:12px; letter-spacing:.04em; color:var(--ink-2); margin:0 auto 18px; text-align:center; }
 .pk-vsl-cap strong { color:var(--ink); font-weight:600; }
-.pk-vsl-cap .dot { width:7px; height:7px; border-radius:50%; background:var(--accent); position:relative; }
+.pk-vsl-cap .dot { width:7px; height:7px; border-radius:50%; background:var(--accent); position:relative; flex:none; }
 .pk-vsl-cap .dot::before { content:""; position:absolute; inset:-4px; border-radius:50%; background:var(--accent); opacity:.4; animation:dot-pulse 2s ease-out infinite; }
+/* mobile: keep the pulsing dot inline with the first line instead of wrapping
+   onto its own row above the caption. */
+@media (max-width:560px){
+  .pk-vsl-cap { flex-wrap:nowrap; align-items:flex-start; gap:9px; text-align:left; justify-content:flex-start; }
+  .pk-vsl-cap .dot { margin-top:7px; }
+}
 
 .pk-vsl { position:relative; aspect-ratio:16/9; border-radius:var(--radius-l); overflow:hidden; cursor:pointer;
   background:radial-gradient(ellipse 90% 90% at 50% 42%, color-mix(in oklab,var(--accent) 14%,transparent) 0%, transparent 60%), oklch(0.15 0.045 345);
@@ -265,21 +298,33 @@ p em, li em, span em { font-family:var(--f-sans); font-style:normal; font-weight
 
 .pk-cards { list-style:none; margin:34px auto 0; padding:0; max-width:880px;
   display:flex; flex-direction:column; gap:14px; }
-.pk-card { display:flex; align-items:center; gap:clamp(18px,2.2vw,28px);
-  background:#fff; border:1px solid #E9D9DE; border-radius:20px; padding:clamp(18px,2.2vw,26px) clamp(22px,2.6vw,30px); }
-/* left side: number at the far left (vertically centred), then icon, then title */
-.pk-card-left { flex:0 0 clamp(176px,22vw,212px); display:flex; align-items:center; gap:14px; }
-.pk-card-badge { flex:none; font-family:var(--f-mono); font-size:22px; font-weight:500; letter-spacing:.02em;
-  color:var(--accent-deep); line-height:1; }
-.pk-card-ic { flex:none; display:inline-flex; color:var(--accent-deep); }
-.pk-card-ic svg { width:34px; height:34px; }
+.pk-card { position:relative; display:flex; align-items:center; gap:clamp(18px,2.2vw,28px);
+  background:#fff; border:1px solid #E9D9DE; border-radius:20px; padding:clamp(18px,2.2vw,26px) clamp(22px,2.6vw,30px);
+  transition:border-color .32s var(--ease-reveal), box-shadow .32s var(--ease-reveal), transform .32s var(--ease-reveal); }
+/* hover: keep attention on the box — lift it, light the border, ignite the icon,
+   deepen the insight line (mirrors the reference "breakthrough call" active row). */
+.pk-card::before { content:""; position:absolute; left:0; top:16px; bottom:16px; width:3px; border-radius:3px;
+  background:var(--accent); opacity:0; transform:scaleY(.3); transform-origin:center;
+  transition:opacity .32s var(--ease-reveal), transform .32s var(--ease-reveal); }
+.pk-card:hover { border-color:color-mix(in oklab,var(--accent) 48%,transparent); transform:translateY(-3px);
+  box-shadow:0 26px 52px -30px color-mix(in oklab,var(--accent-deep) 45%,transparent); }
+.pk-card:hover::before { opacity:1; transform:scaleY(1); }
+/* left side: a larger icon, then the title stack (numbers removed by request) */
+.pk-card-left { flex:0 0 clamp(176px,22vw,212px); display:flex; align-items:center; gap:18px; }
+.pk-card-ic { flex:none; display:inline-flex; color:var(--accent-deep);
+  transition:color .32s var(--ease-reveal), transform .32s var(--ease-reveal); }
+.pk-card-ic svg { width:52px; height:52px; }
+.pk-card:hover .pk-card-ic { color:var(--accent); transform:scale(1.09); }
 .pk-card-titles { display:flex; flex-direction:column; gap:3px; min-width:0; }
 .pk-card-name { font-family:var(--f-mono); font-size:13px; font-weight:500; letter-spacing:.14em; text-transform:uppercase; color:var(--ink); line-height:1.3; }
 .pk-card-sub { font-family:var(--f-sans); font-size:12.5px; color:var(--ink-3); }
 .pk-card-div { flex:none; align-self:stretch; width:1px; background:#E9D9DE; }
 .pk-card-right { flex:1; min-width:0; }
-.pk-card-insight { font-family:var(--f-sans); font-weight:700; font-size:clamp(17px,1.9vw,21px); line-height:1.35; color:var(--ink); margin:0 0 10px; max-width:40ch; }
+.pk-card-insight { font-family:var(--f-sans); font-weight:700; font-size:clamp(17px,1.9vw,21px); line-height:1.35; color:var(--ink); margin:0 0 10px; max-width:40ch;
+  transition:color .32s var(--ease-reveal); }
 .pk-card-insight em { font-style:normal; color:var(--accent-deep); }
+.pk-card:hover .pk-card-insight { color:var(--accent-deep); }
+@media (prefers-reduced-motion:reduce){ .pk-card,.pk-card::before,.pk-card-ic,.pk-card-insight { transition:none; } }
 .pk-card-support { font-family:var(--f-sans); font-size:clamp(14.5px,1.5vw,16px); line-height:1.6; color:var(--ink-2); margin:0; max-width:54ch; }
 .pk-card-support em { font-style:normal; font-weight:600; color:var(--accent-deep); }
 
@@ -332,10 +377,16 @@ p em, li em, span em { font-family:var(--f-sans); font-style:normal; font-weight
 .pk-method-foot { max-width:60ch; margin:34px auto 0; text-align:center; font-size:clamp(15.5px,1.5vw,18px); line-height:1.6; color:var(--ink-2); }
 .pk-method-foot strong { color:var(--ink); font-weight:600; }
 @media (max-width:680px){
-  .pk-journey-line, .pk-journey-fill, .pk-journey.armed .pk-journey-head { left:29px; }
-  .pk-jstep { grid-template-columns:58px 1fr; gap:18px; padding:14px 0; min-height:0; }
-  .pk-jstep-node { grid-column:1; }
-  .pk-jstep--left .pk-jstep-card, .pk-jstep--right .pk-jstep-card { grid-column:2; text-align:left; margin:0; max-width:none; }
+  .pk-journey { padding-left:2px; }
+  .pk-journey-line, .pk-journey-fill { left:29px; }
+  /* the moving progress tip overlaps the small mobile nodes — drop it, the fill
+     bar alone carries the scroll progress cleanly on narrow screens. */
+  .pk-journey.armed .pk-journey-head { display:none; }
+  .pk-jstep { grid-template-columns:58px 1fr; gap:18px; padding:14px 0; min-height:0; align-items:start; }
+  /* pin BOTH cells to row 1 so the node always sits beside its own card — without
+     this, sparse auto-placement pushes the node of "left" steps down a row. */
+  .pk-jstep-node { grid-column:1; grid-row:1; z-index:4; align-self:start; margin-top:2px; }
+  .pk-jstep--left .pk-jstep-card, .pk-jstep--right .pk-jstep-card { grid-column:2; grid-row:1; text-align:left; margin:0; max-width:none; }
 }
 @media (prefers-reduced-motion:reduce){
   .pk-journey.armed .pk-jstep-node { background:var(--accent); border-color:var(--accent); color:#fff; }
@@ -351,7 +402,7 @@ p em, li em, span em { font-family:var(--f-sans); font-style:normal; font-weight
     radial-gradient(ellipse 80% 60% at 95% 100%, color-mix(in oklab,var(--accent) 14%,transparent) 0%, transparent 60%),
     #6f2349; }
 .pk-palak { display:grid; grid-template-columns:0.9fr 1.1fr; gap:clamp(28px,4vw,56px);
-  align-items:end; max-width:1040px; margin:0 auto; }
+  align-items:end; max-width:1040px; margin:0 auto; padding:0 28px; }
 /* full cutout image, no box: bleeds flush to the bottom of the section */
 .pk-palak-img { width:100%; height:auto; display:block; align-self:end; border-radius:0; box-shadow:none; }
 .pk-palak-text { align-self:center; padding-bottom:clamp(44px,6vw,76px); }
@@ -418,9 +469,34 @@ p em, li em, span em { font-family:var(--f-sans); font-style:normal; font-weight
 .pk-offer-intro { max-width:62ch; margin:0 auto 30px; text-align:center; font-size:clamp(16px,1.55vw,18.5px); line-height:1.62; color:var(--ink-2); }
 .pk-offer-intro strong { color:var(--ink); font-weight:600; }
 .pk-walkaway { display:grid; gap:0; margin:0 0 34px; border-top:1px solid var(--hair); }
-.pk-wa { display:grid; grid-template-columns:54px 1fr; gap:18px; align-items:start; padding:20px 4px; border-bottom:1px solid var(--hair); }
-.pk-wa-num { font-family:var(--f-mono); font-size:13px; color:var(--accent-deep); padding-top:3px; }
-.pk-wa-label { font-family:var(--f-mono); font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-3); display:block; margin-bottom:6px; }
+.pk-wa { display:grid; grid-template-columns:56px 1fr; gap:18px; align-items:start; padding:22px 4px 22px 14px; border-bottom:1px solid var(--hair);
+  position:relative; transition:background .5s var(--ease-reveal); }
+.pk-wa::before { content:""; position:absolute; left:0; top:14px; bottom:14px; width:2px; border-radius:2px;
+  background:var(--accent); transform:scaleY(0); transform-origin:top; transition:transform .5s var(--ease-reveal); }
+.pk-wa-num { align-self:start; justify-self:start; width:44px; height:44px; border-radius:50%; display:grid; place-items:center;
+  font-family:var(--f-mono); font-size:15px; font-weight:500; color:var(--accent-deep);
+  background:var(--canvas); border:1.5px solid var(--hair);
+  transition:transform .5s var(--ease-btn), background .5s, color .5s, border-color .5s, box-shadow .5s; }
+/* Scroll-ignite: when armed, the numbers start muted and light up as each row
+   scrolls into view (fail-open: without JS they stay in the lit default state). */
+.pk-walkaway.armed .pk-wa-num { color:var(--ink-3); border-color:var(--hair); background:var(--canvas); }
+.pk-walkaway.armed .pk-wa.is-active .pk-wa-num { background:var(--accent); color:#fff; border-color:var(--accent);
+  transform:scale(1.08);
+  box-shadow:0 10px 24px -8px color-mix(in oklab,var(--accent) 55%,transparent), 0 0 0 6px color-mix(in oklab,var(--accent) 12%,transparent); }
+.pk-walkaway.armed .pk-wa.is-active::before { transform:scaleY(1); }
+/* hover: pull attention onto the row — tint the strip, ignite the number,
+   raise the accent rail (works alongside the scroll-ignite, matches the reference). */
+.pk-wa:hover { background:color-mix(in oklab,var(--accent) 5%,transparent); }
+.pk-wa:hover::before { transform:scaleY(1); }
+.pk-wa:hover .pk-wa-num { background:var(--accent); color:#fff; border-color:var(--accent); transform:scale(1.08);
+  box-shadow:0 10px 24px -8px color-mix(in oklab,var(--accent) 55%,transparent), 0 0 0 6px color-mix(in oklab,var(--accent) 12%,transparent); }
+.pk-wa:hover .pk-wa-label { color:var(--accent-deep); }
+@media (prefers-reduced-motion:reduce){
+  .pk-walkaway.armed .pk-wa-num { background:var(--canvas); color:var(--accent-deep); }
+  .pk-wa,.pk-wa-num,.pk-wa::before { transition:none; }
+}
+.pk-wa-label { font-family:var(--f-mono); font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-3); display:block; margin-bottom:6px;
+  transition:color .4s var(--ease-reveal); }
 .pk-wa-body { font-size:clamp(15.5px,1.5vw,17.5px); line-height:1.58; color:var(--ink); }
 .pk-wa-body em { font-style:normal; font-weight:600; color:var(--accent-deep); }
 .pk-offer-clarity { text-align:center; font-size:clamp(15.5px,1.5vw,17.5px); line-height:1.6; color:var(--ink-2); max-width:60ch; margin:0 auto 30px; }
@@ -554,3 +630,211 @@ p em, li em, span em { font-family:var(--f-sans); font-style:normal; font-weight
   .pk-sticky-inner { gap:0; }
   .pk-sticky-btn { width:100%; justify-content:center; padding:15px; }
 }
+
+/* ====================================================================== */
+/* SHAPE: post-conversion pages — checkout / book-a-call / thank-you.      */
+/* Light utility pages (never the dark stage); reuse existing tokens.      */
+/* ====================================================================== */
+
+/* =============================================================== CHECKOUT */
+/* dark plum stage — elevates the checkout (data-theme="dark" flips the tokens) */
+.pk-paystage { position:relative; isolation:isolate; overflow:hidden;
+  background:
+    radial-gradient(ellipse 120% 62% at 50% -6%, color-mix(in oklab,var(--accent) 24%,transparent) 0%, transparent 52%),
+    radial-gradient(ellipse 80% 46% at 50% 106%, color-mix(in oklab,var(--accent) 14%,transparent) 0%, transparent 60%),
+    var(--canvas); }
+.pk-paystage > .section { padding:clamp(22px,3vw,34px) 0; }
+.pk-paystage .pk-checkout-head { padding-top:clamp(26px,4vw,44px); padding-bottom:clamp(4px,1vw,10px); }
+.pk-paystage .pk-checkout-head .sec-head { margin-bottom:0; }
+.pk-paystage .pk-checkout-head h2 { font-size:clamp(26px,3.2vw,38px); margin:0 0 12px; color:var(--ink); }
+.pk-paystage .pk-checkout-head h2 em { color:var(--accent); }
+.pk-paystage .pk-checkout-head .deck { max-width:52ch; }
+/* the transaction blocks are opaque cards that read on the plum stage */
+.pk-paystage .pk-form { background:color-mix(in oklab,var(--canvas) 82%, #000 4%); }
+
+.pk-checkout-price { display:inline-flex; align-items:baseline; gap:12px; margin-top:14px;
+  font-family:var(--f-mono); font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-3); }
+.pk-checkout-price .fig { font-family:var(--f-display); font-size:clamp(26px,3vw,34px); letter-spacing:-.01em;
+  color:var(--accent-deep); text-transform:none; }
+
+.pk-trustrow { list-style:none; margin:22px auto 0; padding:0; display:flex; flex-wrap:wrap;
+  justify-content:center; align-items:center; gap:10px 20px; }
+.pk-trustrow li { display:inline-flex; align-items:center; gap:8px; white-space:nowrap;
+  font-family:var(--f-mono); font-size:11px; font-weight:500; letter-spacing:.06em; text-transform:uppercase; color:var(--ink-2); }
+.pk-trustrow svg { width:15px; height:15px; flex:none; color:var(--accent-deep); }
+
+.pk-checkout { display:grid; grid-template-columns:1.25fr 0.85fr; gap:clamp(22px,3vw,40px);
+  max-width:1000px; margin:0 auto; align-items:start; }
+
+.pk-form { background:var(--canvas); border:1px solid var(--hair); border-radius:var(--radius-l);
+  padding:clamp(24px,3vw,36px); }
+.pk-form-legend { font-family:var(--f-mono); font-size:11px; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--ink); margin:0 0 22px; padding-bottom:16px; border-bottom:1px solid var(--hair); }
+.pk-fields { display:grid; grid-template-columns:1fr 1fr; gap:16px 18px; }
+.pk-field { display:flex; flex-direction:column; gap:7px; }
+.pk-field--full { grid-column:1 / -1; }
+.pk-field label { font-family:var(--f-mono); font-size:10.5px; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-3); }
+.pk-field .hint { font-family:var(--f-sans); font-size:12px; letter-spacing:0; text-transform:none; color:var(--ink-3); }
+.pk-field .req { color:var(--accent); }
+.pk-field input, .pk-cc { width:100%; font-family:var(--f-sans); font-size:15.5px; color:var(--ink);
+  background:var(--canvas-2); border:1px solid var(--hair); border-radius:var(--radius-s);
+  padding:13px 15px; transition:border-color .25s ease, box-shadow .25s ease; }
+.pk-field input::placeholder { color:var(--ink-3); }
+.pk-field input:focus, .pk-cc:focus { outline:none; border-color:var(--accent);
+  box-shadow:0 0 0 3px color-mix(in oklab,var(--accent) 16%,transparent); }
+/* validation: flag a field the client marks invalid on submit */
+.pk-field input[aria-invalid="true"] { border-color:#e5679a; box-shadow:0 0 0 3px rgba(229,103,154,.16); }
+.pk-field-err { font-family:var(--f-sans); font-size:12px; color:#ec8fbb; margin-top:2px; }
+.pk-pay-error { max-width:60ch; margin:12px auto 0; text-align:center; font-size:13.5px; color:#f2a5c6; }
+/* phone: country-code dropdown (default +91) + number field */
+.pk-phone { display:grid; grid-template-columns:104px 1fr; gap:10px; }
+.pk-cc { -webkit-appearance:none; appearance:none; cursor:pointer; padding-right:30px;
+  background-image:linear-gradient(45deg,transparent 50%,var(--ink-3) 50%),linear-gradient(135deg,var(--ink-3) 50%,transparent 50%);
+  background-position:calc(100% - 16px) center, calc(100% - 11px) center; background-size:5px 5px,5px 5px; background-repeat:no-repeat; }
+
+.pk-summary { position:sticky; top:88px; background:var(--canvas-2);
+  border:1px solid color-mix(in oklab,var(--accent) 22%,transparent); border-radius:var(--radius-l);
+  padding:clamp(22px,2.6vw,30px);
+  box-shadow:0 22px 50px -30px color-mix(in oklab,var(--accent-deep) 26%,transparent); }
+.pk-summary-title { font-family:var(--f-mono); font-size:11px; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--ink); margin:0 0 18px; }
+.pk-summary-item { display:flex; align-items:flex-start; justify-content:space-between; gap:16px;
+  padding:16px 0; border-top:1px solid var(--hair); }
+.pk-summary-item:first-of-type { border-top:0; padding-top:0; }
+.pk-summary-name { font-family:var(--f-display); font-weight:600; font-size:17px; color:var(--ink); margin:0 0 4px; }
+.pk-summary-meta { font-family:var(--f-mono); font-size:10.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--accent-deep); }
+.pk-summary-fig { font-family:var(--f-sans); font-weight:600; font-size:16px; color:var(--ink); white-space:nowrap; text-align:right; }
+.pk-summary-fig .was { display:block; font-weight:400; font-size:13px;
+  text-decoration:line-through; text-decoration-color:color-mix(in oklab,var(--ink-3) 70%,transparent); color:var(--ink-3); }
+.pk-summary-total { display:flex; align-items:baseline; justify-content:space-between; gap:16px;
+  margin-top:6px; padding-top:18px; border-top:1.5px solid color-mix(in oklab,var(--accent) 30%,transparent); }
+.pk-summary-total .lbl { font-family:var(--f-mono); font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-2); }
+.pk-summary-total .amt { font-family:var(--f-display); font-weight:600; font-size:clamp(26px,3vw,32px);
+  color:var(--accent-deep); text-shadow:0 0 26px color-mix(in oklab,var(--accent) 30%,transparent); }
+
+.pk-paymethods { margin-top:20px; padding-top:18px; border-top:1px solid var(--hair);
+  display:grid; grid-template-columns:repeat(3,1fr); gap:10px; }
+.pk-paymethods .lbl { grid-column:1 / -1; font-family:var(--f-mono); font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-3); margin-bottom:2px; }
+.pk-pay-icon { display:flex; align-items:center; justify-content:center; height:42px; padding:6px 10px;
+  background:#fff; border:1px solid var(--hair); border-radius:8px; box-shadow:0 2px 6px -3px rgba(0,0,0,.25); }
+.pk-pay-icon img { height:22px; width:auto; max-width:100%; display:block; }
+
+.pk-pay-block { max-width:1000px; margin:0 auto; text-align:center; }
+.pk-guarantee--pay { max-width:660px; margin:0 auto 22px; text-align:left; }
+.pk-pay-block .cta-big { width:100%; max-width:460px; justify-content:center; }
+.pk-pay-legal { max-width:60ch; margin:20px auto 0; text-align:center; font-size:12.5px; line-height:1.55; color:var(--ink-3); }
+.pk-pay-legal a { color:var(--accent-deep); text-decoration:underline; text-underline-offset:2px; }
+
+@media (max-width:760px){
+  .pk-checkout { grid-template-columns:1fr; }
+  .pk-summary { position:static; }   /* summary flows BELOW the form (reference order) */
+  .pk-fields { grid-template-columns:1fr; }
+  .pk-pay-block .cta-big { max-width:none; }
+}
+
+/* =============================================================== SUCCESS (book + thank-you) */
+.pk-success { text-align:center; margin:0 auto 22px; }
+.pk-success-seal { position:relative; width:74px; height:74px; margin:0 auto 22px; border-radius:50%;
+  display:grid; place-items:center; color:#fff;
+  background:linear-gradient(180deg,var(--accent),var(--accent-deep));
+  box-shadow:0 14px 34px -10px color-mix(in oklab,var(--accent-deep) 55%,transparent),
+             0 0 0 6px color-mix(in oklab,var(--accent) 12%,transparent); }
+.pk-success-seal svg { width:36px; height:36px; }
+.pk-success-seal .ring { position:absolute; inset:0; border-radius:50%;
+  border:1px solid color-mix(in oklab,var(--accent) 55%,transparent); animation:vslRipple 2.8s ease-out infinite; }
+@media (prefers-reduced-motion:reduce){ .pk-success-seal .ring { animation:none; } }
+
+/* =============================================================== BOOK-A-CALL */
+/* single column throughout: the scheduler is the full-width focal block near the
+   top; the 3 reassurances sit as a row beneath it (matches the reference IA). */
+.pk-bookstage .section { padding:clamp(20px,2.8vw,34px) 0; }
+/* keep the calendar high on the page: tight bottom on the header, tight top on
+   the scheduler, so there is no dead space above the booking grid. */
+.pk-book-head { position:relative; isolation:isolate; padding-bottom:clamp(6px,1.2vw,12px);
+  background:radial-gradient(ellipse 120% 60% at 50% -10%, color-mix(in oklab,var(--accent) 14%,transparent) 0%, transparent 58%), var(--canvas); }
+.pk-book-head .pk-success { margin-bottom:16px; }
+.pk-book-head .pk-success-seal { margin-bottom:16px; }
+.pk-book-head .sec-head { margin-bottom:0; }
+.pk-book-head .sec-head h2 { font-size:clamp(26px,3.4vw,40px); }
+.pk-urgent { max-width:60ch; margin:16px auto 0; text-align:center; font-size:clamp(15px,1.5vw,17px);
+  line-height:1.6; color:var(--ink-2); }
+.pk-urgent strong { color:var(--ink); font-weight:600; }
+
+.pk-bookstage #schedule { padding-top:clamp(6px,1.2vw,12px); }
+.pk-book { max-width:1000px; margin:0 auto; }
+.pk-sched-head { text-align:center; margin:0 auto 18px; max-width:60ch; }
+.pk-sched-head .eyebrow { display:block; margin-bottom:8px; }
+.pk-sched-head .sub { font-size:14.5px; color:var(--ink-2); }
+.pk-scheduler { position:relative; min-height:clamp(420px,46vw,500px); border-radius:var(--radius-l); overflow:hidden;
+  border:1px solid var(--hair); background:var(--canvas);
+  box-shadow:0 30px 70px -34px color-mix(in oklab,var(--accent-deep) 30%,transparent); }
+.pk-scheduler-slot { position:absolute; inset:0; z-index:1; }
+.pk-scheduler-frame { display:block; width:100%; height:720px; border:0; position:relative; z-index:1; background:var(--canvas); }
+@media (max-width:760px){ .pk-scheduler-frame { height:640px; } }
+.pk-scheduler-ph { position:absolute; inset:0; z-index:0; display:grid; place-content:center; gap:14px;
+  text-align:center; padding:32px;
+  background:radial-gradient(ellipse 90% 60% at 50% 0%, color-mix(in oklab,var(--accent) 8%,transparent) 0%, transparent 60%), var(--canvas-2); }
+.pk-scheduler-ph .ic { width:56px; height:56px; margin:0 auto; color:var(--accent-deep); }
+.pk-scheduler-ph .lbl { font-family:var(--f-mono); font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-3); }
+.pk-scheduler-ph .note { font-size:14px; color:var(--ink-2); max-width:34ch; margin:0 auto; line-height:1.55; }
+
+.pk-book-support { list-style:none; margin:24px 0 0; padding:0; display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+.pk-book-support li { display:grid; grid-template-columns:22px 1fr; gap:11px; align-items:start;
+  padding:16px 18px; background:var(--canvas); border:1px solid var(--hair); border-radius:var(--radius-m);
+  font-size:14.5px; line-height:1.5; color:var(--ink-2); }
+.pk-book-support .ic { margin-top:1px; color:var(--accent-deep); }
+.pk-book-support .ic svg { width:20px; height:20px; }
+
+/* objection nudge — a tinted accent card (uses the secondary/accent tone) */
+.pk-book-nudge { max-width:720px; margin:0 auto; text-align:center; border-radius:var(--radius-l);
+  padding:clamp(22px,3vw,30px) clamp(24px,3vw,36px);
+  background:color-mix(in oklab,var(--accent) 8%,transparent);
+  border:1px solid color-mix(in oklab,var(--accent) 26%,transparent);
+  font-size:clamp(15px,1.5vw,17px); line-height:1.6; color:var(--ink-2); }
+.pk-book-nudge strong { color:var(--accent-deep); font-weight:600; }
+
+.pk-book-final { text-align:center; }
+.pk-book-final .line { max-width:52ch; margin:0 auto 22px; font-size:clamp(16px,1.7vw,20px);
+  font-family:var(--f-display); font-weight:600; color:var(--ink); line-height:1.25; }
+
+@media (max-width:760px){
+  .pk-book-support { grid-template-columns:1fr; }
+}
+
+/* =============================================================== PREP CHECKLIST (thank-you) */
+.pk-prep { max-width:720px; margin:0 auto; display:flex; flex-direction:column; gap:12px; }
+.pk-prep-item { display:grid; grid-template-columns:34px 1fr; gap:16px; align-items:start;
+  background:var(--canvas); border:1px solid var(--hair); border-radius:var(--radius-m); padding:18px 20px; }
+.pk-prep-check { flex:none; width:26px; height:26px; border-radius:8px; display:grid; place-items:center; margin-top:1px;
+  background:color-mix(in oklab,var(--accent) 12%,transparent);
+  border:1px solid color-mix(in oklab,var(--accent) 40%,transparent); color:var(--accent-deep); }
+.pk-prep-check svg { width:15px; height:15px; }
+.pk-prep-text { font-size:clamp(15px,1.5vw,16.5px); line-height:1.55; color:var(--ink-2); }
+.pk-prep-text strong { color:var(--ink); font-weight:600; }
+
+.pk-close { max-width:56ch; margin:0 auto; text-align:center;
+  font-size:clamp(15.5px,1.55vw,18px); line-height:1.62; color:var(--ink-2); }
+.pk-close strong { color:var(--ink); font-weight:600; }
+
+/* thank-you: tighter rhythm + a soft-pink header, single-column centred page */
+.pk-thanks .section { padding:clamp(24px,3.4vw,44px) 0; }
+.pk-thanks .pk-thanks-head { position:relative; isolation:isolate;
+  background:radial-gradient(ellipse 120% 60% at 50% -10%, color-mix(in oklab,var(--accent) 13%,transparent) 0%, transparent 58%), var(--canvas); }
+.pk-thanks .pk-thanks-head .sec-head { margin-bottom:0; }
+.pk-thanks .sec-head h2 { font-size:clamp(26px,3.4vw,40px); }
+
+/* =============================================================== LEGAL PAGES */
+.pk-legal { max-width:760px; margin:0 auto; padding:clamp(40px,6vw,72px) 28px clamp(48px,7vw,88px); }
+.pk-legal .eyebrow { display:block; margin-bottom:14px; }
+.pk-legal h1 { font-family:var(--f-display); font-weight:600; font-size:clamp(30px,4vw,46px); line-height:1.08;
+  letter-spacing:-.015em; color:var(--ink); margin:0 0 18px; }
+.pk-legal-intro { font-size:clamp(16px,1.6vw,18.5px); line-height:1.6; color:var(--ink-2); margin:0 0 10px; }
+.pk-legal-updated { font-family:var(--f-mono); font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:var(--ink-3); margin:0 0 40px; }
+.pk-legal h2 { font-family:var(--f-display); font-weight:600; font-size:clamp(19px,2.1vw,24px); line-height:1.25; color:var(--ink);
+  margin:34px 0 12px; padding-top:22px; border-top:1px solid var(--hair); }
+.pk-legal h2:first-of-type { border-top:0; padding-top:0; }
+.pk-legal p { font-size:clamp(15px,1.5vw,17px); line-height:1.66; color:var(--ink-2); margin:0 0 1em; }
+.pk-legal ul { margin:0 0 1.1em; padding-left:1.2em; }
+.pk-legal li { font-size:clamp(15px,1.5vw,17px); line-height:1.6; color:var(--ink-2); margin:0 0 .5em; }
+.pk-legal strong { color:var(--ink); font-weight:600; }
+.pk-legal a { color:var(--accent-deep); text-decoration:underline; text-underline-offset:2px; }
