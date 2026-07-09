@@ -18,10 +18,10 @@ export default function BookACallPage() {
       <div className="urgency-strip pk-topstrip" role="note" aria-label="Payment confirmed">
         <div className="pk-ticker">
           <div className="pk-ticker-grp">
-            <span>Payment confirmed</span><span className="sep" aria-hidden="true">/</span><span>₹599 received</span><span className="sep" aria-hidden="true">/</span><span>30 minutes, 1:1 with Palak</span>
+            <span>Payment confirmed</span><span className="sep" aria-hidden="true">/</span><span>₹499 received</span><span className="sep" aria-hidden="true">/</span><span>30 minutes, 1:1 with Palak</span>
           </div>
           <div className="pk-ticker-grp" aria-hidden="true">
-            <span>Payment confirmed</span><span className="sep">/</span><span>₹599 received</span><span className="sep">/</span><span>30 minutes, 1:1 with Palak</span>
+            <span>Payment confirmed</span><span className="sep">/</span><span>₹499 received</span><span className="sep">/</span><span>30 minutes, 1:1 with Palak</span>
           </div>
         </div>
       </div>
@@ -48,7 +48,7 @@ export default function BookACallPage() {
             <div className="sec-head">
               <span className="eyebrow">Payment confirmed</span>
               <h2 className="display">You are in. Now pick your time.</h2>
-              <p className="deck">Your ₹599 is confirmed. Choose a slot below and your call link comes straight to your email.</p>
+              <p className="deck">Your ₹499 is confirmed. Choose a slot below and your call link comes straight to your email.</p>
             </div>
           </div>
         </section>
@@ -158,7 +158,7 @@ export default function BookACallPage() {
                   <span className="pk-faq-q">Can I reschedule?</span>
                   <span className="pk-faq-chevron" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M5 8l5 5 5-5" /></svg></span>
                 </summary>
-                <div className="pk-faq-a"><p>Please only reschedule if there is a genuine emergency. If something urgent comes up, use the link in your confirmation email to move your call, and your ₹599 stays valid. Palak holds a limited number of these slots, so keeping your time helps every woman get seen.</p></div>
+                <div className="pk-faq-a"><p>Please only reschedule if there is a genuine emergency. If something urgent comes up, use the link in your confirmation email to move your call, and your ₹499 stays valid. Palak holds a limited number of these slots, so keeping your time helps every woman get seen.</p></div>
               </details>
             </div>
           </div>

@@ -162,7 +162,7 @@ export default function FunnelEffects({
         const video = document.createElement("video");
         video.className = "pk-vsl-frame";
         video.src = src;
-        video.poster = "/assets/vsl-poster.jpg";
+        video.poster = "/VSL-thumbnail.png";
         video.controls = true;
         video.autoplay = true;
         video.playsInline = true;
@@ -253,14 +253,14 @@ export default function FunnelEffects({
       </div>
 
       {sticky && (
-        <a className="sticky-cta" ref={stickyRef} href={bookHref} aria-label="Book My Clarity Call, ₹599">
+        <a className="sticky-cta" ref={stickyRef} href={bookHref} aria-label="Book My 1:1 Call With Palak">
           <div className="pk-sticky-inner">
             <div className="pk-sticky-text">
               <span className="pk-sticky-lead">A 30-minute clinical assessment</span>
-              <span className="pk-sticky-sub">1:1 with Palak &middot; clarity or your fee back</span>
+              <span className="pk-sticky-sub">Clarity or money back guarantee</span>
             </div>
             <span className="pk-sticky-btn">
-              Book My Clarity Call ₹599
+              BOOK MY 1:1 CALL WITH PALAK
               <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                 <path d="M4 10h11M11 5.5L15.5 10 11 14.5" />
               </svg>

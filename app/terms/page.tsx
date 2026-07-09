@@ -14,14 +14,14 @@ export default function TermsPage() {
       intro="These terms explain what the Clarity Call is, what it is not, and the terms on which you book it. Please read them before you pay. By booking a call, you agree to these terms."
     >
       <h2>1. About the service</h2>
-      <p>The Clarity Call is a paid 30-minute 1:1 educational clinical nutrition assessment with Palak, a clinical functional nutritionist. The fee is ₹599. On the call, Palak reviews the information and reports you share and gives you an educational view of what may be driving how you feel, which markers your current reports may be missing, and what to look at first.</p>
+      <p>The Clarity Call is a paid 30-minute 1:1 educational clinical nutrition assessment with Palak, a clinical functional nutritionist. The fee is ₹499. On the call, Palak reviews the information and reports you share and gives you an educational view of what may be driving how you feel, which markers your current reports may be missing, and what to look at first.</p>
 
       <h2>2. What the service is not</h2>
       <p>The Clarity Call is for education and guidance only. It is not medical treatment, diagnosis, a prescription, or emergency care. It does not create a doctor and patient relationship. It is meant to work alongside the care of your own doctor, never to replace it. You should not stop, start, or change any medication based on the call. Always consult your doctor before making any medical decision. If you are having a medical emergency, do not use this service. Contact your doctor or your local emergency number right away.</p>
 
       <h2>3. Booking and payment</h2>
       <ul>
-        <li>The fee for one Clarity Call is ₹599, payable in advance through our payment processor, Razorpay.</li>
+        <li>The fee for one Clarity Call is ₹499, payable in advance through our payment processor, Razorpay.</li>
         <li>Your booking is confirmed only after your payment is received and you receive a confirmation from us.</li>
         <li>You choose your slot at the time of booking. Your call link and joining details are sent to the email and phone number you provide, so please make sure they are correct.</li>
         <li>Refunds and rescheduling are covered in our <a href="/refund">Cancellation and Refund Policy</a>.</li>

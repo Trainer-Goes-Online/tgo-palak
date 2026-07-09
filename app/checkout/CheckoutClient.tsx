@@ -217,7 +217,7 @@ export default function CheckoutClient({ priceInr, priceLabel }: { priceInr: num
               <p className="pk-guarantee-text">Clarity or your fee back. Leave without clarity and <strong>your {priceLabel} comes straight back.</strong></p>
             </div>
             <button className="cta-big" type="button" onClick={handlePay} disabled={loading} aria-busy={loading}>
-              {loading ? "Opening secure checkout…" : `Pay ${priceLabel} and book my call`}
+              {loading ? "Opening secure checkout…" : `PAY ${priceLabel} AND BOOK MY CALL`}
               {!loading && (
                 <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                   <path d="M4 10h11M11 5.5L15.5 10 11 14.5" />

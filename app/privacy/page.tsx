@@ -43,7 +43,7 @@ export default function PrivacyPage() {
       <h2>5. Who we share your information with</h2>
       <p>We share your information only with service providers who help us run the service, and only to the extent they need it:</p>
       <ul>
-        <li><strong>Razorpay</strong>, our payment processor, to take your ₹599 payment securely and to process refunds.</li>
+        <li><strong>Razorpay</strong>, our payment processor, to take your ₹499 payment securely and to process refunds.</li>
         <li><strong>Our scheduling tool</strong>, to book your slot and send your confirmation and reminders.</li>
         <li><strong>Our analytics and messaging tools</strong> (such as GA4, Microsoft Clarity, the Meta Pixel, and our email or WhatsApp reminder service), to measure usage and to send you booking messages.</li>
       </ul>

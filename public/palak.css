@@ -231,6 +231,53 @@ p em, li em, span em { font-family:var(--f-sans); font-style:normal; font-weight
 .pk-cta-microline { margin-top:16px; font-family:var(--f-mono); font-size:11.5px; letter-spacing:.04em;
   text-transform:uppercase; color:var(--ink-3); }
 
+/* CTA guarantee microcopy (sits right under every primary CTA) */
+.pk-cta-guarantee { margin:14px 0 0; font-family:var(--f-mono); font-size:12px; font-weight:500;
+  letter-spacing:.09em; text-transform:uppercase; color:var(--accent-deep);
+  display:flex; align-items:center; justify-content:center; gap:8px; }
+.pk-cta-guarantee::before { content:""; width:15px; height:15px; flex:none; background:currentColor;
+  -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 2.5l7 3v5.5c0 4.4-3 7.7-7 9-4-1.3-7-4.6-7-9V5.5z'/%3E%3Cpath d='M8.5 12l2.4 2.4 4.6-4.8'/%3E%3C/svg%3E") center/contain no-repeat;
+  mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 2.5l7 3v5.5c0 4.4-3 7.7-7 9-4-1.3-7-4.6-7-9V5.5z'/%3E%3Cpath d='M8.5 12l2.4 2.4 4.6-4.8'/%3E%3C/svg%3E") center/contain no-repeat; }
+[data-theme="dark"] .pk-cta-guarantee { color:var(--accent-soft); }
+
+/* Mirror section: story converted to a check-pointer list.
+   Points + close share one centered measure; close aligns with the pointer TEXT
+   (icon 26 + gap 12 = 38px) so the whole block reads as one aligned unit. */
+.pk-mirror-points { list-style:none; padding:0; margin:10px auto 0; max-width:600px; display:grid; gap:15px; text-align:left; }
+.pk-mirror-points li { display:flex; gap:12px; align-items:flex-start;
+  font-size:clamp(16px,1.7vw,18.5px); line-height:1.5; color:var(--ink-2);
+  transition:color .28s var(--ease-btn,ease); }
+.pk-mirror-points .ic { flex:none; width:26px; height:26px; border-radius:50%; display:grid; place-items:center;
+  background:var(--accent-soft); color:var(--accent-deep); margin-top:1px;
+  transition:background .28s ease, color .28s ease, transform .28s ease, box-shadow .28s ease; }
+.pk-mirror-points .ic svg { width:15px; height:15px; }
+.pk-mirror-close { margin:26px auto 0; max-width:600px; padding-left:38px; text-align:left; font-weight:600;
+  color:var(--ink); font-size:clamp(16.5px,1.7vw,19px); line-height:1.5; }
+
+/* Hover: the tick lights up and the point is brought to attention. */
+@media (hover:hover){
+  .pk-mirror-points li:hover { color:var(--ink); }
+  .pk-mirror-points li:hover .ic { background:var(--accent); color:#fff; transform:scale(1.12);
+    box-shadow:0 0 0 5px color-mix(in oklab,var(--accent) 22%,transparent),
+               0 8px 20px -6px color-mix(in oklab,var(--accent) 70%,transparent); }
+}
+
+/* Scroll-in: each point rises and fades as it enters the viewport (fail-open:
+   without scroll-timeline support the points are simply visible). */
+@supports (animation-timeline: view){
+  @media (prefers-reduced-motion:no-preference){
+    .pk-mirror-points li { animation:mirrorPointIn linear both;
+      animation-timeline:view(); animation-range:entry 0% entry 55%; }
+  }
+}
+@keyframes mirrorPointIn { from { opacity:0; transform:translateY(18px); } to { opacity:1; transform:none; } }
+
+/* Mobile: keep the four points and the closing line flush left. */
+@media (max-width:560px){
+  .pk-mirror-points { margin-left:0; margin-right:0; max-width:none; }
+  .pk-mirror-close { padding-left:0; margin-left:0; margin-right:0; max-width:none; }
+}
+
 /* bigger CTA: keep the inline arrow proportional */
 .cta-big svg { width:22px; height:22px; flex:none; }
 
@@ -258,20 +305,20 @@ p em, li em, span em { font-family:var(--f-sans); font-style:normal; font-weight
 /* mobile: keep the pulsing dot inline with the first line instead of wrapping
    onto its own row above the caption. */
 @media (max-width:560px){
-  .pk-vsl-cap { flex-wrap:nowrap; align-items:flex-start; gap:9px; text-align:left; justify-content:flex-start; }
-  .pk-vsl-cap .dot { margin-top:7px; }
+  .pk-vsl-cap { flex-wrap:nowrap; align-items:center; gap:9px; text-align:center; justify-content:center; }
+  .pk-vsl-cap .dot { margin-top:0; }
 }
 
 .pk-vsl { position:relative; aspect-ratio:16/9; border-radius:var(--radius-l); overflow:hidden; cursor:pointer;
   background:radial-gradient(ellipse 90% 90% at 50% 42%, color-mix(in oklab,var(--accent) 14%,transparent) 0%, transparent 60%), oklch(0.15 0.045 345);
   border:1px solid color-mix(in oklab,var(--gold) 30%,transparent);
   box-shadow:0 40px 90px -30px rgba(20,8,16,.7), 0 0 0 1px rgba(255,255,255,.04) inset, 0 0 60px -10px color-mix(in oklab,var(--accent) 30%,transparent); }
-/* Poster wired as a background layer: if /assets/vsl-poster.jpg is not yet
-   supplied it simply shows the clean dark frame behind (no broken-image icon). */
+/* Poster wired as a background layer: the designed VSL thumbnail. If it is ever
+   missing it simply shows the clean dark frame behind (no broken-image icon). */
 .pk-vsl-poster { position:absolute; inset:0; z-index:0;
-  background:url("/assets/vsl-poster.jpg") center/cover no-repeat; }
+  background:url("/VSL-thumbnail.png") center/cover no-repeat; }
 .pk-vsl::after { content:""; position:absolute; inset:0; z-index:1; pointer-events:none;
-  background:radial-gradient(ellipse 70% 70% at 50% 45%, transparent 40%, rgba(18,7,14,.55) 100%); }
+  background:radial-gradient(ellipse 75% 75% at 50% 45%, transparent 55%, rgba(18,7,14,.32) 100%); }
 .pk-vsl.playing::after, .pk-vsl.playing .pk-vsl-play, .pk-vsl.playing .pk-vsl-runtime { display:none; }
 .pk-vsl-play { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); z-index:3;
   width:84px; height:84px; border-radius:50%; border:0; cursor:pointer; display:grid; place-items:center;
@@ -444,6 +491,30 @@ p em, li em, span em { font-family:var(--f-sans); font-style:normal; font-weight
 .pk-case-meta { font-family:var(--f-mono); font-size:10.5px; letter-spacing:.12em; text-transform:uppercase; color:var(--accent-deep); }
 .pk-case-stars { margin-top:7px; color:var(--accent); letter-spacing:.18em; font-size:13px; }
 .pk-case-quote { margin:11px 0 0; font-size:14.5px; line-height:1.56; color:var(--ink-2); }
+
+/* ============ PROOF section background skins (A/B test) =====================
+   Swap the class on <section id="proof"> in app/page.tsx to test the stage:
+     • proof-wine  -> deep wine, like the "Who you would be working with" (Palak) section
+     • proof-soft  -> soft pink, like the "The next step" (offer) section
+   A thin seam sits on top either way so it reads as a distinct section from the
+   light mirror above. The white result cards keep their dark interior text in
+   both skins (they use the default light-theme tokens). Only the section header
+   (eyebrow, headline, foot) needs light text on the wine skin. */
+
+/* --- Option A: deep wine (default) --- */
+#proof.proof-wine { position:relative; isolation:isolate; border-top:1.5px solid var(--gold);
+  background:
+    radial-gradient(ellipse 85% 70% at 12% 6%, color-mix(in oklab,#ec8fbb 20%,transparent) 0%, transparent 58%),
+    radial-gradient(ellipse 80% 60% at 95% 100%, color-mix(in oklab,#ec8fbb 13%,transparent) 0%, transparent 60%),
+    #6f2349; }
+#proof.proof-wine .eyebrow { color:#f4b8d3; }
+#proof.proof-wine .sec-head h2 { color:#fdeef5; }
+#proof.proof-wine .pk-proof-foot { color:#e7c4d4; }
+#proof.proof-wine .pk-proof-foot strong { color:#fff; }
+
+/* --- Option B: soft pink (like "The next step") --- */
+#proof.proof-soft { background:var(--canvas-2); border-top:1px solid var(--hair); }
+/* header + cards stay dark on the light stage (default tokens); no overrides needed */
 
 /* case study video modal */
 .pk-case-modal { position:fixed; inset:0; z-index:1000; display:none; align-items:center; justify-content:center; padding:24px; }

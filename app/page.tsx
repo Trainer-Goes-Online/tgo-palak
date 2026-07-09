@@ -9,10 +9,10 @@ export default function Page() {
       <div className="urgency-strip pk-topstrip" role="note" aria-label="What the Clarity Call is">
         <div className="pk-ticker">
           <div className="pk-ticker-grp">
-            <span>1:1 with Palak</span><span className="sep" aria-hidden="true">/</span><span>A clinical assessment, not a sales pitch</span><span className="sep" aria-hidden="true">/</span><span>Clarity or your fee back</span>
+            <span>1:1 with Palak</span><span className="sep" aria-hidden="true">/</span><span>A clinical assessment, not a sales pitch</span><span className="sep" aria-hidden="true">/</span><span>Clarity or money back guarantee</span>
           </div>
           <div className="pk-ticker-grp" aria-hidden="true">
-            <span>1:1 with Palak</span><span className="sep">/</span><span>A clinical assessment, not a sales pitch</span><span className="sep">/</span><span>Clarity or your fee back</span>
+            <span>1:1 with Palak</span><span className="sep">/</span><span>A clinical assessment, not a sales pitch</span><span className="sep">/</span><span>Clarity or money back guarantee</span>
           </div>
         </div>
       </div>
@@ -22,7 +22,7 @@ export default function Page() {
           <a className="pk-brand" href="#top" aria-label="FitWithPalak home">
             <span className="pk-brand-word">FitWith<em>Palak</em></span>
           </a>
-          <a className="pk-nav-cta" href="/checkout">Book My Clarity Call</a>
+          <a className="pk-nav-cta" href="/checkout">BOOK MY 1:1 CALL WITH PALAK</a>
         </div>
       </header>
 
@@ -33,17 +33,17 @@ export default function Page() {
           <div className="pk-hero-inner">
             <p className="pk-hero-eyebrow">For women on thyroid medication who still do not feel like themselves</p>
             <h1>
-              You have been on thyroid medication for years. The dose keeps climbing, and you still feel <em>just as tired</em>, just as bloated, just as stuck.
+              You take the <em>thyroid pill</em> every single day.<br/>And you still wake up <em>tired, bloated, and stuck.</em>
             </h1>
             <p className="pk-sub">
-              <span className="lede">You are not imagining it, and it is not your fault.</span> The medicine only manages the number. Nobody has told you why you still feel this bad even after taking it, because nobody has looked for the real cause yet. It can be found.
+              <span className="lede">It is not your fault.</span> The medicine only manages the number. Nobody has told you why you still feel this bad, because nobody has looked for the real cause yet. It can be found.
             </p>
 
             {/* VSL — sits before the CTA */}
             <div className="pk-hero-vsl">
               <p className="pk-vsl-cap">
                 <span className="dot" aria-hidden="true"></span>
-                <span><strong>Press play. Turn the sound on.</strong> Watch this before you book any more tests.</span>
+                <span><strong>Press play.</strong> Watch this first</span>
               </p>
               {/* Clean dark player frame. data-video-src is wired by Atul; until then
                   the poster + play affordance stand on their own (no faked imagery). */}
@@ -62,11 +62,12 @@ export default function Page() {
             </div>
 
             <a className="cta-big" href="/checkout" role="button">
-              Book My Clarity Call ₹599
+              BOOK MY 1:1 CALL WITH PALAK
               <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                 <path d="M4 10h11M11 5.5L15.5 10 11 14.5" />
               </svg>
             </a>
+            {/* <p className="pk-cta-guarantee">Clarity or money back guarantee</p> */}
             <ul className="pk-cta-points" aria-label="What the call is">
               <li>
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -84,7 +85,7 @@ export default function Page() {
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                   <path d="M12 3l7 3v5c0 4.5-3 7.6-7 9-4-1.4-7-4.5-7-9V6l7-3z" /><path d="M9 12l2 2 4-4" />
                 </svg>
-                Clarity or fee back
+                Clarity or money back guarantee
               </li>
             </ul>
 
@@ -101,10 +102,104 @@ export default function Page() {
               <span className="eyebrow">If this is you, you are in the right place</span>
               <h2 className="display">On the outside you have it all together. On the inside your body feels like it is working against you.</h2>
             </div>
-            <div className="prose">
-              <p>You are the woman everyone assumes has it sorted. You show up, you get things done, you eat your protein, you go for your walks, you booked the appointment and you took the medication exactly as told. As far as anyone can see, you are doing everything right.</p>
-              <p>And you are still very tired. You are still very bloated. You feel off in a way you cannot fully explain, and somehow the dose only goes up, never down. You have said it more than once: &ldquo;I am taking the medicine every single day, and I still feel like this.&rdquo;</p>
-              <p>And every time you bring it up you hear the same thing. Your numbers are controlled, raise the dose, you are just stressed. But you know your own body, and you know something underneath is actually wrong. Being dismissed year after year, while they just keep raising your dose, is exhausting on its own.</p>
+            <ul className="pk-mirror-points" aria-label="If this is you">
+              <li>
+                <span className="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 7L9.5 17.5 4 12" /></svg></span>
+                <span>You do everything right. Protein, your walks, the medication exactly as told.</span>
+              </li>
+              <li>
+                <span className="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 7L9.5 17.5 4 12" /></svg></span>
+                <span>Still exhausted, still bloated, still off, and the dose only goes up.</span>
+              </li>
+              <li>
+                <span className="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 7L9.5 17.5 4 12" /></svg></span>
+                <span>You keep hearing &ldquo;your numbers are controlled, raise the dose, you are just stressed.&rdquo;</span>
+              </li>
+              <li>
+                <span className="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 7L9.5 17.5 4 12" /></svg></span>
+                <span>You know your own body, and you know something underneath is actually wrong.</span>
+              </li>
+            </ul>
+            <p className="pk-mirror-close">Being dismissed year after year is exhausting on its own.</p>
+          </div>
+        </section>
+
+        {/* ============================================== 8 · PROOF (result quote cards) */}
+        {/* Background skin: swap "proof-wine" <-> "proof-soft" to A/B test the stage. */}
+        <section className="section proof-wine" id="proof" data-reveal aria-label="Client results">
+          <div className="wrap">
+            <div className="sec-head">
+              <span className="eyebrow">Women who were told &ldquo;this is just how it is&rdquo;</span>
+              <h2 className="display">This is what happens when someone finally looks into it properly.</h2>
+            </div>
+
+            <div className="pk-cases">
+              <article className="pk-case">
+                <div className="pk-case-video" data-video={process.env.NEXT_PUBLIC_TESTIMONIAL_1_URL ?? ""} role="button" tabIndex={0} aria-label="Play Divya&rsquo;s story">
+                  <img className="pk-case-thumb" src="/assets/case-studies/divya.jpg" alt="Divya, thyroid case study" loading="lazy" />
+                  <span className="pk-case-tag">Hashimoto&rsquo;s</span>
+                  <span className="pk-case-play" aria-hidden="true"><span className="tri"></span></span>
+                </div>
+                <div className="pk-case-body">
+                  <h3 className="pk-case-name">Divya</h3>
+                  <div className="pk-case-meta">Markers improved in 12 weeks</div>
+                  <div className="pk-case-stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                  <p className="pk-case-quote">&ldquo;My endocrinologist almost made me feel like it is what it is. Palak went through every report and searched for the root cause. After 12 weeks my markers have improved, I sleep better, and I finally feel hopeful about Hashimoto&rsquo;s remission.&rdquo;</p>
+                </div>
+              </article>
+
+              <article className="pk-case">
+                <div className="pk-case-video" data-video={process.env.NEXT_PUBLIC_TESTIMONIAL_2_URL ?? ""} role="button" tabIndex={0} aria-label="Play Upasana&rsquo;s story">
+                  <img className="pk-case-thumb" src="/assets/case-studies/upasana.jpg" alt="Upasana, thyroid and gut case study" loading="lazy" />
+                  <span className="pk-case-tag">Thyroid &middot; hormones</span>
+                  <span className="pk-case-play" aria-hidden="true"><span className="tri"></span></span>
+                </div>
+                <div className="pk-case-body">
+                  <h3 className="pk-case-name">Upasana</h3>
+                  <div className="pk-case-meta">Thyroid &amp; gut improving</div>
+                  <div className="pk-case-stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                  <p className="pk-case-quote">&ldquo;Before Fit with Palak I struggled with my thyroid, gut, bowel movement and low energy. After three months on the routine I have seen good improvement in all of these. A few more months and I will be completely over them.&rdquo;</p>
+                </div>
+              </article>
+
+              <article className="pk-case">
+                <div className="pk-case-video" data-video={process.env.NEXT_PUBLIC_TESTIMONIAL_3_URL ?? ""} role="button" tabIndex={0} aria-label="Play Grishma&rsquo;s story">
+                  <img className="pk-case-thumb" src="/assets/case-studies/grishma.jpg" alt="Grishma, gut and acidity case study" loading="lazy" />
+                  <span className="pk-case-tag">Daily acidity &middot; gut</span>
+                  <span className="pk-case-play" aria-hidden="true"><span className="tri"></span></span>
+                </div>
+                <div className="pk-case-body">
+                  <h3 className="pk-case-name">Grishma</h3>
+                  <div className="pk-case-meta">Off her daily acidity meds</div>
+                  <div className="pk-case-stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                  <p className="pk-case-quote">&ldquo;My acidity troubled me constantly and I took those medicines every single day. Now I do not even remember where they are in my house. Even following the plan sixty to seventy percent, my acidity is completely gone.&rdquo;</p>
+                </div>
+              </article>
+
+              <article className="pk-case">
+                <div className="pk-case-video" data-video={process.env.NEXT_PUBLIC_TESTIMONIAL_4_URL ?? ""} role="button" tabIndex={0} aria-label="Play Amoolya&rsquo;s story">
+                  <img className="pk-case-thumb" src="/assets/case-studies/amoolya.jpg" alt="Amoolya, hidden inflammation case study" loading="lazy" />
+                  <span className="pk-case-tag">Hidden inflammation</span>
+                  <span className="pk-case-play" aria-hidden="true"><span className="tri"></span></span>
+                </div>
+                <div className="pk-case-body">
+                  <h3 className="pk-case-name">Amoolya</h3>
+                  <div className="pk-case-meta">Inflammation found on bloodwork</div>
+                  <div className="pk-case-stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                  <p className="pk-case-quote">&ldquo;For years my weight would not drop. The blood work Palak asked me to do showed inflammation, something I never knew affected weight loss. Once I cut gluten, dairy and sugar the weight came down, my iron improved and my constant tiredness lifted.&rdquo;</p>
+                </div>
+              </article>
+            </div>
+
+            <p className="pk-proof-foot">Different women, same pattern: <strong>the answer was never to try harder, it was to look deeper.</strong></p>
+          </div>
+
+          {/* case-study video modal (opens only when a card has a wired data-video) */}
+          <div className="pk-case-modal" id="caseModal" aria-hidden="true">
+            <div className="pk-case-modal-bg" data-close></div>
+            <div className="pk-case-modal-inner" role="dialog" aria-modal="true" aria-label="Client story video">
+              <button className="pk-case-modal-close" type="button" aria-label="Close video" data-close>&times;</button>
+              <video className="pk-case-modal-video" id="caseModalVideo" controls playsInline preload="none"></video>
             </div>
           </div>
         </section>
@@ -115,8 +210,8 @@ export default function Page() {
             <div className="sec-head">
               <span className="eyebrow">This was never a discipline problem</span>
               <h2 className="display">The problem is not you. There are four things nobody ever fixed, and that is why you still feel like this even on medication.</h2>
-              <p className="deck">Your doctor checked your thyroid and gave you medicine for it. But that medicine only manages the number. It never touches the reason your thyroid slowed down in the first place. Nobody ran your full panel, and nobody looked at these four.</p>
-              <p className="deck pk-why-line">So you were given medicine for the symptom, while the real causes kept growing quietly.</p>
+              <p className="deck">Your medicine only manages the number. It never touches the reason your thyroid slowed down in the first place. Nobody ran your full panel, and nobody checked these four.</p>
+              <p className="deck pk-why-line">You were treated for the symptom, while the real causes kept growing quietly.</p>
             </div>
 
             <ol className="pk-cards" aria-label="The four root causes nobody fixed">
@@ -216,7 +311,7 @@ export default function Page() {
             <div className="sec-head">
               <span className="eyebrow">How healing actually works</span>
               <h2 className="display">You can eat perfectly and take every supplement, but if your gut is not absorbing it, <em>none of it reaches your body.</em></h2>
-              <p className="deck">This is the part almost everyone skips. You can do everything right with your food and your supplements, but if your gut is not working, your body cannot actually use any of it, so nothing changes. Fix that first, and the same effort finally starts to work. This is the difference between managing symptoms forever and actually getting your body back. It happens in this order, and the order is the reason it works.</p>
+              <p className="deck">This is the part almost everyone skips. If your gut is not absorbing, nothing changes, no matter how right you eat. Fix that first, and the same effort finally starts to work. It happens in this order, and the order is the reason it works.</p>
             </div>
 
             <div className="pk-journey" aria-label="The four steps, in order">
@@ -292,84 +387,6 @@ export default function Page() {
           </div>
         </section>
 
-        {/* ============================================== 8 · PROOF (result quote cards) */}
-        <section className="section section--light" id="proof" data-reveal aria-label="Client results">
-          <div className="wrap">
-            <div className="sec-head">
-              <span className="eyebrow">Women who were told &ldquo;this is just how it is&rdquo;</span>
-              <h2 className="display">This is what happens when someone finally looks into it properly.</h2>
-            </div>
-
-            <div className="pk-cases">
-              <article className="pk-case">
-                <div className="pk-case-video" data-video={process.env.NEXT_PUBLIC_TESTIMONIAL_1_URL ?? ""} role="button" tabIndex={0} aria-label="Play Divya&rsquo;s story">
-                  <img className="pk-case-thumb" src="/assets/case-studies/divya.jpg" alt="Divya, thyroid case study" loading="lazy" />
-                  <span className="pk-case-tag">Hashimoto&rsquo;s</span>
-                  <span className="pk-case-play" aria-hidden="true"><span className="tri"></span></span>
-                </div>
-                <div className="pk-case-body">
-                  <h3 className="pk-case-name">Divya</h3>
-                  <div className="pk-case-meta">Markers improved in 12 weeks</div>
-                  <div className="pk-case-stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-                  <p className="pk-case-quote">&ldquo;My endocrinologist had almost made me feel like it is what it is. Palak went through every single report, looked for the root cause, and every time I came to her the answer was &lsquo;let me look into it.&rsquo; After 12 weeks my markers have improved, I have more energy, I sleep better, and I finally feel hopeful working towards Hashimoto&rsquo;s remission.&rdquo;</p>
-                </div>
-              </article>
-
-              <article className="pk-case">
-                <div className="pk-case-video" data-video={process.env.NEXT_PUBLIC_TESTIMONIAL_2_URL ?? ""} role="button" tabIndex={0} aria-label="Play Upasana&rsquo;s story">
-                  <img className="pk-case-thumb" src="/assets/case-studies/upasana.jpg" alt="Upasana, thyroid and gut case study" loading="lazy" />
-                  <span className="pk-case-tag">Thyroid &middot; hormones</span>
-                  <span className="pk-case-play" aria-hidden="true"><span className="tri"></span></span>
-                </div>
-                <div className="pk-case-body">
-                  <h3 className="pk-case-name">Upasana</h3>
-                  <div className="pk-case-meta">Thyroid &amp; gut improving</div>
-                  <div className="pk-case-stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-                  <p className="pk-case-quote">&ldquo;Before Fit with Palak I was struggling with hormonal issues, especially my thyroid, gut health, bowel movement and low energy. After following the routine for three months I have seen good improvement in all of these. I am sure a few more months and I will be completely over these problems.&rdquo;</p>
-                </div>
-              </article>
-
-              <article className="pk-case">
-                <div className="pk-case-video" data-video={process.env.NEXT_PUBLIC_TESTIMONIAL_3_URL ?? ""} role="button" tabIndex={0} aria-label="Play Grishma&rsquo;s story">
-                  <img className="pk-case-thumb" src="/assets/case-studies/grishma.jpg" alt="Grishma, gut and acidity case study" loading="lazy" />
-                  <span className="pk-case-tag">Daily acidity &middot; gut</span>
-                  <span className="pk-case-play" aria-hidden="true"><span className="tri"></span></span>
-                </div>
-                <div className="pk-case-body">
-                  <h3 className="pk-case-name">Grishma</h3>
-                  <div className="pk-case-meta">Off her daily acidity meds</div>
-                  <div className="pk-case-stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-                  <p className="pk-case-quote">&ldquo;My acidity used to trouble me constantly and I popped those medicines every single day. Now I do not even remember where they are in my house. Even following the plan around sixty to seventy percent, with better meal timings and a morning breathing routine, my acidity is completely gone.&rdquo;</p>
-                </div>
-              </article>
-
-              <article className="pk-case">
-                <div className="pk-case-video" data-video={process.env.NEXT_PUBLIC_TESTIMONIAL_4_URL ?? ""} role="button" tabIndex={0} aria-label="Play Amoolya&rsquo;s story">
-                  <img className="pk-case-thumb" src="/assets/case-studies/amoolya.jpg" alt="Amoolya, hidden inflammation case study" loading="lazy" />
-                  <span className="pk-case-tag">Hidden inflammation</span>
-                  <span className="pk-case-play" aria-hidden="true"><span className="tri"></span></span>
-                </div>
-                <div className="pk-case-body">
-                  <h3 className="pk-case-name">Amoolya</h3>
-                  <div className="pk-case-meta">Inflammation found on bloodwork</div>
-                  <div className="pk-case-stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-                  <p className="pk-case-quote">&ldquo;For years my weight would not drop and I kept slipping back into old habits. The blood work Palak asked me to do showed I had inflammation in my body, something I had no idea even affected weight loss. Once I cut gluten, dairy and sugar the weight came down smoothly, my iron levels improved and I stopped feeling tired all the time.&rdquo;</p>
-                </div>
-              </article>
-            </div>
-
-            <p className="pk-proof-foot">Different women, same pattern: <strong>the answer was never to try harder, it was to look deeper.</strong></p>
-          </div>
-
-          {/* case-study video modal (opens only when a card has a wired data-video) */}
-          <div className="pk-case-modal" id="caseModal" aria-hidden="true">
-            <div className="pk-case-modal-bg" data-close></div>
-            <div className="pk-case-modal-inner" role="dialog" aria-modal="true" aria-label="Client story video">
-              <button className="pk-case-modal-close" type="button" aria-label="Close video" data-close>&times;</button>
-              <video className="pk-case-modal-video" id="caseModalVideo" controls playsInline preload="none"></video>
-            </div>
-          </div>
-        </section>
 
         {/* ============================================== 9 · THE OFFER (walk-away ledger + price + guarantee) */}
         <section className="section section--soft" id="book" data-reveal aria-label="Book a Clarity Call">
@@ -411,8 +428,8 @@ export default function Page() {
               <p className="pk-offer-intro">Almost every woman asks this, so: <strong>do not wait for your reports before you book.</strong> You see the doctor first, and they tell you which tests to run. Same here. I look at your case, then I tell you <strong>exactly which bloodwork you actually need.</strong></p>
 
               <div className="pk-price">
-                <span className="pk-price-fig">₹599</span>
-                <p className="pk-price-reframe">The call is ₹599. That is on purpose. It is <span className="strike">not what my time is worth</span>, it is <span className="real">a filter</span>. It keeps this space for women who are genuinely ready to fix this, not just collect more opinions. <strong>If that is you, the fee will be the easiest decision on this page.</strong></p>
+                <span className="pk-price-fig">₹499</span>
+                <p className="pk-price-reframe">The call is ₹499. That is on purpose. It is <span className="strike">not what my time is worth</span>, it is <span className="real">a filter</span>. It keeps this space for women who are genuinely ready to fix this, not just collect more opinions. <strong>If that is you, the fee will be the easiest decision on this page.</strong></p>
               </div>
 
               <div className="pk-guarantee">
@@ -424,12 +441,13 @@ export default function Page() {
 
               <div className="pk-offer-cta">
                 <a className="cta-big" href="/checkout" role="button">
-                  Book My Clarity Call ₹599
+                  BOOK MY 1:1 CALL WITH PALAK
                   <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                     <path d="M4 10h11M11 5.5L15.5 10 11 14.5" />
                   </svg>
                 </a>
-                <p className="pk-cta-microline">Books instantly via Exley &middot; 30 minutes, 1:1 with Palak &middot; Clarity or your fee back</p>
+                <p className="pk-cta-guarantee">Clarity or money back guarantee</p>
+                <p className="pk-cta-microline">Books instantly &middot; 30 minutes, 1:1 with Palak &middot; ₹499</p>
               </div>
             </div>
           </div>
@@ -559,7 +577,7 @@ export default function Page() {
             </div>
 
             <a className="cta-big" href="/checkout" role="button">
-              Book My Clarity Call ₹599
+              BOOK MY 1:1 CALL WITH PALAK
               <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                 <path d="M4 10h11M11 5.5L15.5 10 11 14.5" />
               </svg>
@@ -581,7 +599,7 @@ export default function Page() {
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                   <path d="M12 3l7 3v5c0 4.5-3 7.6-7 9-4-1.4-7-4.5-7-9V6l7-3z" /><path d="M9 12l2 2 4-4" />
                 </svg>
-                Clarity or fee back
+                Clarity or money back guarantee
               </li>
             </ul>
           </div>
