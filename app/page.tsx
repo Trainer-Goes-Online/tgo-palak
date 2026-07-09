@@ -135,58 +135,50 @@ export default function Page() {
 
             <div className="pk-cases">
               <article className="pk-case">
-                <div className="pk-case-video" data-video={process.env.NEXT_PUBLIC_TESTIMONIAL_1_URL ?? ""} role="button" tabIndex={0} aria-label="Play Divya&rsquo;s story">
-                  <img className="pk-case-thumb" src="/assets/case-studies/divya.jpg" alt="Divya, thyroid case study" loading="lazy" />
-                  <span className="pk-case-tag">Hashimoto&rsquo;s</span>
-                  <span className="pk-case-play" aria-hidden="true"><span className="tri"></span></span>
+                <div className="pk-case-video" data-video={process.env.NEXT_PUBLIC_TESTIMONIAL_2_URL ?? ""} role="button" tabIndex={0} aria-label="Play Shivani&rsquo;s story">
+                  <img className="pk-case-thumb" src="/testimonials/Shivani.png" alt="Shivani, thyroid recovery story" loading="lazy" />
                 </div>
                 <div className="pk-case-body">
-                  <h3 className="pk-case-name">Divya</h3>
-                  <div className="pk-case-meta">Markers improved in 12 weeks</div>
+                  <h3 className="pk-case-name">Shivani</h3>
+                  <div className="pk-case-meta">Her energy came back</div>
                   <div className="pk-case-stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-                  <p className="pk-case-quote">&ldquo;My endocrinologist almost made me feel like it is what it is. Palak went through every report and searched for the root cause. After 12 weeks my markers have improved, I sleep better, and I finally feel hopeful about Hashimoto&rsquo;s remission.&rdquo;</p>
+                  <p className="pk-case-quote">&ldquo;I stopped feeling tired all the time after addressing my thyroid.&rdquo;</p>
                 </div>
               </article>
 
               <article className="pk-case">
-                <div className="pk-case-video" data-video={process.env.NEXT_PUBLIC_TESTIMONIAL_2_URL ?? ""} role="button" tabIndex={0} aria-label="Play Upasana&rsquo;s story">
-                  <img className="pk-case-thumb" src="/assets/case-studies/upasana.jpg" alt="Upasana, thyroid and gut case study" loading="lazy" />
-                  <span className="pk-case-tag">Thyroid &middot; hormones</span>
-                  <span className="pk-case-play" aria-hidden="true"><span className="tri"></span></span>
+                <div className="pk-case-video" data-video={process.env.NEXT_PUBLIC_TESTIMONIAL_1_URL ?? ""} role="button" tabIndex={0} aria-label="Play Shradha&rsquo;s story">
+                  <img className="pk-case-thumb" src="/testimonials/Shradha.png" alt="Shradha, thyroid and gut recovery story" loading="lazy" />
                 </div>
                 <div className="pk-case-body">
-                  <h3 className="pk-case-name">Upasana</h3>
-                  <div className="pk-case-meta">Thyroid &amp; gut improving</div>
+                  <h3 className="pk-case-name">Shradha</h3>
+                  <div className="pk-case-meta">Thyroid &amp; gut, finally moving</div>
                   <div className="pk-case-stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-                  <p className="pk-case-quote">&ldquo;Before Fit with Palak I struggled with my thyroid, gut, bowel movement and low energy. After three months on the routine I have seen good improvement in all of these. A few more months and I will be completely over them.&rdquo;</p>
+                  <p className="pk-case-quote">&ldquo;Nothing worked until I addressed my thyroid and gut health.&rdquo;</p>
                 </div>
               </article>
 
               <article className="pk-case">
-                <div className="pk-case-video" data-video={process.env.NEXT_PUBLIC_TESTIMONIAL_3_URL ?? ""} role="button" tabIndex={0} aria-label="Play Grishma&rsquo;s story">
-                  <img className="pk-case-thumb" src="/assets/case-studies/grishma.jpg" alt="Grishma, gut and acidity case study" loading="lazy" />
-                  <span className="pk-case-tag">Daily acidity &middot; gut</span>
-                  <span className="pk-case-play" aria-hidden="true"><span className="tri"></span></span>
+                <div className="pk-case-video" data-video={process.env.NEXT_PUBLIC_TESTIMONIAL_3_URL ?? ""} role="button" tabIndex={0} aria-label="Play Yogita&rsquo;s story">
+                  <img className="pk-case-thumb" src="/testimonials/Yogita.png" alt="Yogita, thyroid recovery story" loading="lazy" />
                 </div>
                 <div className="pk-case-body">
-                  <h3 className="pk-case-name">Grishma</h3>
-                  <div className="pk-case-meta">Off her daily acidity meds</div>
+                  <h3 className="pk-case-name">Yogita</h3>
+                  <div className="pk-case-meta">A plan built around her body</div>
                   <div className="pk-case-stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-                  <p className="pk-case-quote">&ldquo;My acidity troubled me constantly and I took those medicines every single day. Now I do not even remember where they are in my house. Even following the plan sixty to seventy percent, my acidity is completely gone.&rdquo;</p>
+                  <p className="pk-case-quote">&ldquo;Every workout was designed around my body, not against it.&rdquo;</p>
                 </div>
               </article>
 
               <article className="pk-case">
-                <div className="pk-case-video" data-video={process.env.NEXT_PUBLIC_TESTIMONIAL_4_URL ?? ""} role="button" tabIndex={0} aria-label="Play Amoolya&rsquo;s story">
-                  <img className="pk-case-thumb" src="/assets/case-studies/amoolya.jpg" alt="Amoolya, hidden inflammation case study" loading="lazy" />
-                  <span className="pk-case-tag">Hidden inflammation</span>
-                  <span className="pk-case-play" aria-hidden="true"><span className="tri"></span></span>
+                <div className="pk-case-video" data-video={process.env.NEXT_PUBLIC_TESTIMONIAL_4_URL ?? ""} role="button" tabIndex={0} aria-label="Play Ashwin&rsquo;s story">
+                  <img className="pk-case-thumb" src="/testimonials/Ashwin.png" alt="Ashwin, gut and bloating recovery story" loading="lazy" />
                 </div>
                 <div className="pk-case-body">
-                  <h3 className="pk-case-name">Amoolya</h3>
-                  <div className="pk-case-meta">Inflammation found on bloodwork</div>
+                  <h3 className="pk-case-name">Ashwin</h3>
+                  <div className="pk-case-meta">Gut healed, bloating gone</div>
                   <div className="pk-case-stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-                  <p className="pk-case-quote">&ldquo;For years my weight would not drop. The blood work Palak asked me to do showed inflammation, something I never knew affected weight loss. Once I cut gluten, dairy and sugar the weight came down, my iron improved and my constant tiredness lifted.&rdquo;</p>
+                  <p className="pk-case-quote">&ldquo;My gut healed, my bloating reduced, and I finally felt lighter.&rdquo;</p>
                 </div>
               </article>
             </div>
@@ -387,9 +379,82 @@ export default function Page() {
           </div>
         </section>
 
+        {/* ============================================== 8.5 · VALUE STACK (what you get for the fee) */}
+        <section className="section section--soft" data-reveal aria-label="Everything you get">
+          <div className="wrap">
+            <div className="sec-head">
+              <span className="eyebrow">What you get</span>
+              <h2 className="display">Everything you get for just <span className="pk-vs-price">₹499</span>.</h2>
+              <p className="deck">A focused 1:1 assessment, your exact test list, and a private community of women doing the same work. Here is everything that is yours the moment you book.</p>
+            </div>
+
+            <div className="pk-vstack-grid">
+              <article className="pk-vs-card">
+                <img src="/value-stack/30_min_call.png" alt="30-Minute Clarity Call with Palak, value ₹1,999" loading="lazy" />
+                <div className="pk-vs-cap">
+                  <div className="pk-vs-cap-top">
+                    <h3 className="pk-vs-name">30-Minute Clarity Call</h3>
+                    <span className="pk-vs-val-pill">₹1,999</span>
+                  </div>
+                  <p className="pk-vs-desc">A focused 1:1 assessment where you get the likely cause of how you feel and a clear order of what to fix first.</p>
+                  <span className="pk-vs-included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12.5l4 4 10-10.5" /></svg>Included</span>
+                </div>
+              </article>
+              <article className="pk-vs-card">
+                <img src="/value-stack/test_list.png" alt="Your Personal Test List, value ₹999" loading="lazy" />
+                <div className="pk-vs-cap">
+                  <div className="pk-vs-cap-top">
+                    <h3 className="pk-vs-name">Your Personal Test List</h3>
+                    <span className="pk-vs-val-pill">₹999</span>
+                  </div>
+                  <p className="pk-vs-desc">A written list of the exact tests your case needs, so you stop wasting time and money on the wrong ones.</p>
+                  <span className="pk-vs-included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12.5l4 4 10-10.5" /></svg>Included</span>
+                </div>
+              </article>
+              <article className="pk-vs-card">
+                <img src="/value-stack/community.png" alt="The FitWithPalak Community, value ₹899" loading="lazy" />
+                <div className="pk-vs-cap">
+                  <div className="pk-vs-cap-top">
+                    <h3 className="pk-vs-name">The FitWithPalak Community</h3>
+                    <span className="pk-vs-val-pill">₹899</span>
+                  </div>
+                  <p className="pk-vs-desc">A private WhatsApp space with other women doing the same work, so you are never figuring this out alone.</p>
+                  <span className="pk-vs-included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12.5l4 4 10-10.5" /></svg>Included</span>
+                </div>
+              </article>
+            </div>
+
+            <div className="pk-vstack-total" role="group" aria-label="Total value and price">
+              <span className="pk-vs-gift" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"><path d="M20 12v8H4v-8" /><path d="M2 7h20v5H2z" /><path d="M12 22V7" /><path d="M12 7S9.5 3 7.5 4.2 8 7 8 7h4zM12 7s2.5-4 4.5-2.8S16 7 16 7h-4z" /></svg>
+              </span>
+              <div className="pk-vs-total-left">
+                <span className="pk-vs-total-lbl">Total value</span>
+                <span className="pk-vs-total-fig">₹3,897</span>
+              </div>
+              <span className="pk-vs-arrow" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h13M13 6l6 6-6 6" /></svg>
+              </span>
+              <div className="pk-vs-pay">
+                <span className="pk-vs-pay-lbl">You pay today</span>
+                <span className="pk-vs-pay-fig">₹499</span>
+              </div>
+            </div>
+
+            <div className="pk-vstack-cta">
+              <a className="cta-big" href="/checkout" role="button">
+                Book My 1:1 Call With Palak
+                <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <path d="M4 10h11M11 5.5L15.5 10 11 14.5" />
+                </svg>
+              </a>
+              <p className="pk-cta-guarantee">Clarity or money back guarantee</p>
+            </div>
+          </div>
+        </section>
 
         {/* ============================================== 9 · THE OFFER (walk-away ledger + price + guarantee) */}
-        <section className="section section--soft" id="book" data-reveal aria-label="Book a Clarity Call">
+        <section className="section section--light" id="book" data-reveal aria-label="Book a Clarity Call">
           <div className="wrap">
             <div className="sec-head">
               <span className="eyebrow">The next step</span>
@@ -454,7 +519,7 @@ export default function Page() {
         </section>
 
         {/* ============================================== 10 · WHO THIS IS / IS NOT FOR (fit contrast) */}
-        <section className="section section--light" id="fit" data-reveal aria-label="Who this is for">
+        <section className="section section--soft" id="fit" data-reveal aria-label="Who this is for">
           <div className="wrap">
             <div className="sec-head">
               <span className="eyebrow">Let us be honest about fit</span>
@@ -500,7 +565,7 @@ export default function Page() {
         </section>
 
         {/* ============================================== 11 · FAQ (objection ledger) */}
-        <section className="section section--soft" id="faq" data-reveal aria-label="Before you book">
+        <section className="section section--light" id="faq" data-reveal aria-label="Before you book">
           <div className="wrap">
             <div className="sec-head">
               <span className="eyebrow">Before you book</span>

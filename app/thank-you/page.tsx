@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import FunnelEffects from "../FunnelEffects";
 import Footer from "../Footer";
+import { brand } from "@/lib/config";
 
 export const metadata: Metadata = {
   title: "You are booked | FitWithPalak Clarity Call",
@@ -8,6 +9,7 @@ export const metadata: Metadata = {
 };
 
 export default function ThankYouPage() {
+  const communityUrl = brand.whatsappCommunityUrl;
   return (
     <>
       <FunnelEffects sticky={false} />
@@ -45,8 +47,23 @@ export default function ThankYouPage() {
             </div>
             <div className="sec-head">
               <span className="eyebrow">Your Clarity Call is booked</span>
-              <h2 className="display">You are all set. Your call is <em>confirmed.</em></h2>
-              <p className="deck">Check your email for the link. We will also send one WhatsApp reminder before your call.</p>
+              <h2 className="display">Your call is confirmed. <em>One last step.</em></h2>
+              <p className="deck">Check your email for the call link. And join the <em>FitWithPalak</em> WhatsApp community as promised.</p>
+            </div>
+
+            <div className="pk-community" role="group" aria-label="Join the FitWithPalak WhatsApp community">
+              <span className="pk-community-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M12 3l9 16H3z" /><path d="M12 10v4M12 17v.5" /></svg>
+                Important &middot; One last step
+              </span>
+              <h3 className="pk-community-title">Join the FitWithPalak WhatsApp community now.</h3>
+              <p className="pk-community-text">This is where Palak shares reminders, answers, and support around your call, alongside other women doing the same work. <strong>Your seat in the community is waiting.</strong></p>
+              <a className="pk-community-btn" href={communityUrl} target="_blank" rel="noopener noreferrer">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.8 4.9-1.3A10 10 0 1 0 12 2zm0 2a8 8 0 1 1-4.2 14.8l-.3-.2-2.9.8.8-2.8-.2-.3A8 8 0 0 1 12 4zm-3 4.2c-.2 0-.5 0-.7.4-.2.4-.9 1-.9 2.3s.9 2.6 1.1 2.8c.1.2 1.8 2.9 4.5 3.9 2.2.9 2.7.7 3.2.7.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.6-.3l-1.8-.9c-.2-.1-.4-.1-.6.1l-.8 1c-.2.2-.3.2-.6.1-.3-.2-1.2-.5-2.3-1.4-.8-.7-1.4-1.6-1.6-1.9-.1-.3 0-.4.1-.5l.5-.5c.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.9-2c-.2-.5-.4-.5-.6-.5z" /></svg>
+                Join the Community Here
+                <svg className="arr" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M4 10h11M11 5.5L15.5 10 11 14.5" /></svg>
+              </a>
+              <p className="pk-community-note">Opens in WhatsApp &middot; 1-click join</p>
             </div>
           </div>
         </section>

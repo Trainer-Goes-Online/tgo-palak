@@ -17,7 +17,7 @@ export default function RefundPage() {
       <p>The Clarity Call is ₹499, and it is backed by a simple promise. If you attend your full call and do not walk away with real clarity on what is likely going on with your body and what to do next, your ₹499 is refunded. All we ask is that you complete the call, so Palak has the chance to actually assess your situation.</p>
 
       <h2>2. How to request a refund</h2>
-      <p>To request a refund under this promise, write to <a href="mailto:teamfitwithpalak@gmail.com">teamfitwithpalak@gmail.com</a> within 7 days of your call. Please use the same email you booked with and tell us briefly that the call did not give you the clarity you came for. You do not need to justify it in detail. We honour this promise in good faith.</p>
+      <p>To request a refund under this promise, write to <a href="mailto:teamfitwithpalak@gmail.com">teamfitwithpalak@gmail.com</a> up to 7 days after your call. Please use the same email you booked with and tell us briefly that the call did not give you the clarity you came for. You do not need to justify it in detail. We honour this promise in good faith.</p>
 
       <h2>3. Refund timelines</h2>
       <p>Once we approve your refund, we process it to your original payment method through Razorpay. Refunds are usually completed within 5 to 7 business days, though the exact time your bank takes to show it can vary.</p>

@@ -94,6 +94,17 @@ export default function BookACallPage() {
                   <span>30 minutes, 1:1, directly with Palak.</span>
                 </li>
               </ul>
+
+              <div className="pk-book-more">
+                <span className="pk-book-more-kicker">Wait, <em>there is more.</em></span>
+                <p className="pk-book-more-text">Your booking also includes the private FitWithPalak WhatsApp community. Grab your link on the next step.</p>
+                <a className="cta-big" href="/thank-you" role="button">
+                  Get The WhatsApp Community Link
+                  <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <path d="M4 10h11M11 5.5L15.5 10 11 14.5" />
+                  </svg>
+                </a>
+              </div>
             </div>
           </div>
         </section>

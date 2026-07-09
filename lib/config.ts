@@ -36,6 +36,9 @@ export const brand = {
   siteUrl,
   /** Canonical checkout URL for CAPI event_source_url (query stripped). */
   checkoutUrl: process.env.NEXT_PUBLIC_CHECKOUT_URL ?? `${siteUrl}/checkout`,
+  /** WhatsApp community invite link (shown on the thank-you page). */
+  whatsappCommunityUrl:
+    process.env.NEXT_PUBLIC_WHATSAPP_COMMUNITY_URL ?? "https://chat.whatsapp.com/L5uVsryORlSKipLRkwNzZj",
 } as const;
 
 /** Formatted price for display, e.g. "₹499". */

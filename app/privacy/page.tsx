@@ -50,7 +50,7 @@ export default function PrivacyPage() {
       <p>These providers process your information on our behalf and are expected to protect it. We may also share information if the law requires it, or to protect our rights and the safety of others.</p>
 
       <h2>6. How long we keep your information</h2>
-      <p>We keep your information only as long as we need it for the purposes described above, or as long as the law requires us to. Booking and payment records are kept for the period required for accounting and tax. When we no longer need your information, we delete it or make it anonymous.</p>
+      <p>We keep your information for up to 30 days after your call, after which we delete it or make it anonymous. The only exception is booking and payment records, which we keep for as long as the law requires us to for accounting and tax.</p>
 
       <h2>7. How we protect your information</h2>
       <p>We use reasonable technical and organisational measures to protect your information from loss, misuse, and unauthorised access. No method of transmission over the internet is completely secure, so we cannot promise absolute security, but we take your data seriously and limit access to the people who need it.</p>
