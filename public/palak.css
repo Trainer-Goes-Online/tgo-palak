@@ -959,8 +959,8 @@ p em, li em, span em { font-family:var(--f-sans); font-style:normal; font-weight
 .pk-scheduler-ph .lbl { font-family:var(--f-mono); font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-3); }
 .pk-scheduler-ph .note { font-size:14px; color:var(--ink-2); max-width:34ch; margin:0 auto; line-height:1.55; }
 
-.pk-book-support { list-style:none; margin:24px 0 0; padding:0; display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
-.pk-book-support li { display:grid; grid-template-columns:22px 1fr; gap:11px; align-items:start;
+.pk-book-support { list-style:none; margin:24px 0 0; padding:0; display:flex; flex-wrap:wrap; justify-content:center; gap:18px; }
+.pk-book-support li { flex:0 1 340px; box-sizing:border-box; display:grid; grid-template-columns:22px 1fr; gap:11px; align-items:start;
   padding:16px 18px; background:var(--canvas); border:1px solid var(--hair); border-radius:var(--radius-m);
   font-size:14.5px; line-height:1.5; color:var(--ink-2); }
 .pk-book-support .ic { margin-top:1px; color:var(--accent-deep); }
@@ -979,7 +979,7 @@ p em, li em, span em { font-family:var(--f-sans); font-style:normal; font-weight
   font-family:var(--f-display); font-weight:600; color:var(--ink); line-height:1.25; }
 
 @media (max-width:760px){
-  .pk-book-support { grid-template-columns:1fr; }
+  .pk-book-support li { flex-basis:100%; }
 }
 
 /* =============================================================== PREP CHECKLIST (thank-you) */

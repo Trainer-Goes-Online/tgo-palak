@@ -85,14 +85,14 @@ export default function BookACallPage() {
                   <span className="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 12a8 8 0 1 1 2.3 5.6" /><path d="M4 20v-4h4" /></svg></span>
                   <span>Only reschedule if there is an emergency.</span>
                 </li>
-                <li>
+                {/* <li>
                   <span className="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 6.5h16v11H4z" /><path d="M4 7l8 6 8-6" /></svg></span>
                   <span>Video link by email, plus one WhatsApp reminder.</span>
                 </li>
                 <li>
                   <span className="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="8" r="3.4" /><path d="M5.5 19a6.5 6.5 0 0 1 13 0" /></svg></span>
                   <span>30 minutes, 1:1, directly with Palak.</span>
-                </li>
+                </li> */}
               </ul>
 
               <div className="pk-book-more">

@@ -142,7 +142,7 @@ export default function Page() {
                   <h3 className="pk-case-name">Shivani</h3>
                   <div className="pk-case-meta">Her energy came back</div>
                   <div className="pk-case-stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-                  <p className="pk-case-quote">&ldquo;I stopped feeling tired all the time after addressing my thyroid.&rdquo;</p>
+                  <p className="pk-case-quote">&ldquo;Years of fatigue, hair fall, dry skin, and a Hashimoto's diagnosis left her feeling exhausted. By following a holistic plan focused on addressing the root cause, her thyroid symptoms improved, her antibody levels reduced, and she finally started feeling healthier again.&rdquo;</p>
                 </div>
               </article>
 
@@ -154,7 +154,8 @@ export default function Page() {
                   <h3 className="pk-case-name">Shradha</h3>
                   <div className="pk-case-meta">Thyroid &amp; gut, finally moving</div>
                   <div className="pk-case-stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-                  <p className="pk-case-quote">&ldquo;Nothing worked until I addressed my thyroid and gut health.&rdquo;</p>
+                  <p className="pk-case-quote">&ldquo;Despite working out daily and eating healthy, she couldn't lose stubborn belly fat due to thyroid and gut health issues. After identifying the root cause and making simple lifestyle changes, she improved her energy, gut health, and finally started seeing real progress. 
+&rdquo;</p>
                 </div>
               </article>
 
@@ -166,7 +167,7 @@ export default function Page() {
                   <h3 className="pk-case-name">Yogita</h3>
                   <div className="pk-case-meta">A plan built around her body</div>
                   <div className="pk-case-stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-                  <p className="pk-case-quote">&ldquo;Every workout was designed around my body, not against it.&rdquo;</p>
+                  <p className="pk-case-quote">&ldquo;Four months after her C-section, she wanted to regain strength and recover safely. With a personalized nutrition and workout plan tailored to her body, recovery stage, and lifestyle, she rebuilt her strength and continues to follow the healthy habits she learned. &rdquo;</p>
                 </div>
               </article>
 
@@ -178,7 +179,8 @@ export default function Page() {
                   <h3 className="pk-case-name">Ashwin</h3>
                   <div className="pk-case-meta">Gut healed, bloating gone</div>
                   <div className="pk-case-stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-                  <p className="pk-case-quote">&ldquo;My gut healed, my bloating reduced, and I finally felt lighter.&rdquo;</p>
+                  <p className="pk-case-quote">&ldquo;Despite exercising regularly, her weight wouldn't budge because of PCOS and poor gut health. By improving her nutrition, supporting her gut, and making sustainable lifestyle changes, she reduced bloating, gained more energy, and finally felt her body responding again.
+&rdquo;</p>
                 </div>
               </article>
             </div>
