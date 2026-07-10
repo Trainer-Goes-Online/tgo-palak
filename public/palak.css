@@ -630,13 +630,17 @@ p em, li em, span em { font-family:var(--f-sans); font-style:normal; font-weight
 /* case study video modal */
 .pk-case-modal { position:fixed; inset:0; z-index:1000; display:none; align-items:center; justify-content:center; padding:24px; }
 .pk-case-modal.open { display:flex; }
-.pk-case-modal-bg { position:absolute; inset:0; background:rgba(40,12,28,.86); backdrop-filter:blur(4px); }
+.pk-case-modal-bg { position:absolute; inset:0; background:rgba(40,12,28,.94); backdrop-filter:blur(6px); }
 .pk-case-modal-inner { position:relative; z-index:1; width:min(880px,100%); max-height:90vh; }
 .pk-case-modal-video { width:100%; max-height:90vh; display:block; border-radius:12px; background:#000; box-shadow:0 30px 80px -20px rgba(0,0,0,.7); }
-.pk-case-modal-close { position:absolute; top:-14px; right:-14px; width:40px; height:40px; border-radius:50%; border:0;
+.pk-case-modal-close { position:absolute; top:-14px; right:-14px; z-index:3; width:40px; height:40px; border-radius:50%; border:0;
   background:#fff; color:var(--accent-deep); font-size:26px; line-height:1; cursor:pointer; display:grid; place-items:center;
   box-shadow:0 8px 20px -6px rgba(0,0,0,.5); }
-@media (max-width:560px){ .pk-case-modal-close { top:-46px; right:0; } }
+/* Mobile: pin the close button to the viewport top-right so the sticky header can
+   never hide it, regardless of how tall the portrait video is. */
+@media (max-width:560px){
+  .pk-case-modal-close { position:fixed; top:calc(env(safe-area-inset-top, 0px) + 14px); right:14px; width:44px; height:44px; }
+}
 
 .pk-proof-foot { max-width:62ch; margin:34px auto 0; text-align:center; font-size:clamp(15.5px,1.5vw,18px); line-height:1.62; color:var(--ink-2); }
 .pk-proof-foot strong { color:var(--ink); font-weight:600; }

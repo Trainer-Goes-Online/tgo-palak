@@ -185,7 +185,7 @@ export default function CheckoutClient({ priceInr, priceLabel }: { priceInr: num
                   <span className="pk-summary-meta">30-minute 1:1 with Palak</span>
                 </div>
                 <span className="pk-summary-fig">
-                  <span className="was">₹1,499</span>
+                  <span className="was">₹3,897</span>
                   {priceLabel}
                 </span>
               </div>

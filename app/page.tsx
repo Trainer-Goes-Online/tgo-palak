@@ -187,15 +187,6 @@ export default function Page() {
 
             <p className="pk-proof-foot">Different women, same pattern: <strong>the answer was never to try harder, it was to look deeper.</strong></p>
           </div>
-
-          {/* case-study video modal (opens only when a card has a wired data-video) */}
-          <div className="pk-case-modal" id="caseModal" aria-hidden="true">
-            <div className="pk-case-modal-bg" data-close></div>
-            <div className="pk-case-modal-inner" role="dialog" aria-modal="true" aria-label="Client story video">
-              <button className="pk-case-modal-close" type="button" aria-label="Close video" data-close>&times;</button>
-              <video className="pk-case-modal-video" id="caseModalVideo" controls playsInline preload="none"></video>
-            </div>
-          </div>
         </section>
 
         {/* ============================================== 5 · WHY THIS KEEPS HAPPENING (markers ledger) */}
@@ -683,6 +674,16 @@ export default function Page() {
             </nav>
           </div>
         </section>
+
+        {/* case-study video modal — kept at the root of <main> so its overlay sits
+            above the sticky header + CTA (not trapped inside a section stacking context) */}
+        <div className="pk-case-modal" id="caseModal" aria-hidden="true">
+          <div className="pk-case-modal-bg" data-close></div>
+          <div className="pk-case-modal-inner" role="dialog" aria-modal="true" aria-label="Client story video">
+            <button className="pk-case-modal-close" type="button" aria-label="Close video" data-close>&times;</button>
+            <video className="pk-case-modal-video" id="caseModalVideo" controls playsInline preload="none"></video>
+          </div>
+        </div>
       </main>
     </>
   );

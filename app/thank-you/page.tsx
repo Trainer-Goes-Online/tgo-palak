@@ -80,20 +80,20 @@ export default function ThankYouPage() {
                 <span className="pk-wa-num" aria-hidden="true">01</span>
                 <div><span className="pk-wa-label">Your story</span><p className="pk-wa-body">Your history and how your body actually feels, in your own words.</p></div>
               </div>
-              <div className="pk-wa" role="listitem">
+              {/* <div className="pk-wa" role="listitem">
                 <span className="pk-wa-num" aria-hidden="true">02</span>
                 <div><span className="pk-wa-label">Your reports</span><p className="pk-wa-body">What your current reports show, and what they are missing.</p></div>
-              </div>
+              </div> */}
               <div className="pk-wa" role="listitem">
-                <span className="pk-wa-num" aria-hidden="true">03</span>
+                <span className="pk-wa-num" aria-hidden="true">02</span>
                 <div><span className="pk-wa-label">The cause</span><p className="pk-wa-body">The most likely cause of <em>your</em> tiredness, bloating, and stuck weight.</p></div>
               </div>
               <div className="pk-wa" role="listitem">
-                <span className="pk-wa-num" aria-hidden="true">04</span>
+                <span className="pk-wa-num" aria-hidden="true">03</span>
                 <div><span className="pk-wa-label">The tests</span><p className="pk-wa-body">The exact markers you need to test next.</p></div>
               </div>
               <div className="pk-wa" role="listitem">
-                <span className="pk-wa-num" aria-hidden="true">05</span>
+                <span className="pk-wa-num" aria-hidden="true">04</span>
                 <div><span className="pk-wa-label">The order</span><p className="pk-wa-body">What to fix first, in the right order.</p></div>
               </div>
             </div>
