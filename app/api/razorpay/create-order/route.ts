@@ -48,7 +48,13 @@ export async function POST(req: NextRequest) {
 
     // Snapshot cookies + request context now — the webhook (server-to-server)
     // has none of these, so we stash them in the order notes for later.
-    const fbc = req.cookies.get("_fbc")?.value ?? "";
+    // fbc: prefer the Pixel's _fbc cookie; if it is missing but we have an
+    // fbclid, reconstruct it (fb.1.<ms>.<fbclid>) so Meta CAPI still gets the
+    // click-id signal and EMQ stays high even when the browser Pixel was blocked.
+    const fbclidClean = (fbclid ?? "").trim();
+    const fbc =
+      req.cookies.get("_fbc")?.value ||
+      (fbclidClean ? `fb.1.${Date.now()}.${fbclidClean}` : "");
     const fbp = req.cookies.get("_fbp")?.value ?? "";
     const clientIp =
       req.headers.get("x-forwarded-for")?.split(",")[0].trim() ??
