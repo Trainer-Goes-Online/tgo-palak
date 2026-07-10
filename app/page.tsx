@@ -20,7 +20,7 @@ export default function Page() {
       <header className="pk-nav">
         <div className="pk-nav-inner">
           <a className="pk-brand" href="#top" aria-label="FitWithPalak home">
-            <span className="pk-brand-word">FitWith<em>Palak</em></span>
+            <img className="pk-brand-logo" src="/brand-logo.png" alt="FitWithPalak" />
           </a>
           <a className="pk-nav-cta" href="/checkout">BOOK MY 1:1 CALL WITH PALAK</a>
         </div>

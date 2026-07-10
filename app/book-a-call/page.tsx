@@ -1,15 +1,21 @@
 import type { Metadata } from "next";
 import FunnelEffects from "../FunnelEffects";
 import Footer from "../Footer";
-import { priceLabel } from "@/lib/config";
+import { priceLabel, brand } from "@/lib/config";
 
 export const metadata: Metadata = {
   title: "Book your Clarity Call | FitWithPalak",
   description: `Your ${priceLabel} is confirmed. Pick a time for your 30-minute 1:1 Clarity Call with Palak.`,
 };
 
+const SLOT_WA_MESSAGE =
+  "Hi FitWithPalak, I have booked and paid for my Clarity Call, but my preferred time slot is not showing. Here are my details:\nName:\nEmail:\nPhone:\nPreferred day and time:";
+const SLOT_MAIL_SUBJECT = "Preferred slot not available — Clarity Call";
+
 export default function BookACallPage() {
   const calendlyUrl = process.env.NEXT_PUBLIC_CALENDLY_URL;
+  const waHref = `https://wa.me/${brand.supportWhatsapp}?text=${encodeURIComponent(SLOT_WA_MESSAGE)}`;
+  const mailHref = `mailto:${brand.supportEmail}?subject=${encodeURIComponent(SLOT_MAIL_SUBJECT)}&body=${encodeURIComponent(SLOT_WA_MESSAGE)}`;
   return (
     <>
       <FunnelEffects sticky={false} />
@@ -29,7 +35,7 @@ export default function BookACallPage() {
       <header className="pk-nav">
         <div className="pk-nav-inner">
           <a className="pk-brand" href="/" aria-label="FitWithPalak home">
-            <span className="pk-brand-word">FitWith<em>Palak</em></span>
+            <img className="pk-brand-logo" src="/brand-logo.png" alt="FitWithPalak" />
           </a>
           <span className="pk-nav-cta" aria-hidden="true">Payment confirmed</span>
         </div>
@@ -80,20 +86,45 @@ export default function BookACallPage() {
                 )}
               </div>
 
-              <ul className="pk-book-support" aria-label="What to expect">
+              {/* Highlighted fallback for paid clients who cannot find a slot they want */}
+              <div className="pk-slot-help" role="group" aria-label="Preferred time slot not available">
+                <span className="pk-slot-badge">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M12 3l9 16H3z" /><path d="M12 10v4M12 17v.5" /></svg>
+                  Preferred slot not available?
+                </span>
+                <h3 className="pk-slot-title">Cannot find a time that works for you?</h3>
+                <p className="pk-slot-text">You have already paid, and your seat is reserved, so you will not lose it. If none of the times above suit you, message us your <strong>name, email, phone number, and your preferred day and time</strong>, and we will personally set up your slot.</p>
+                <div className="pk-slot-actions">
+                  <a className="pk-slot-btn pk-slot-btn--wa" href={waHref} target="_blank" rel="noopener noreferrer">
+                    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.8 4.9-1.3A10 10 0 1 0 12 2zm0 2a8 8 0 1 1-4.2 14.8l-.3-.2-2.9.8.8-2.8-.2-.3A8 8 0 0 1 12 4zm-3 4.2c-.2 0-.5 0-.7.4-.2.4-.9 1-.9 2.3s.9 2.6 1.1 2.8c.1.2 1.8 2.9 4.5 3.9 2.2.9 2.7.7 3.2.7.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.6-.3l-1.8-.9c-.2-.1-.4-.1-.6.1l-.8 1c-.2.2-.3.2-.6.1-.3-.2-1.2-.5-2.3-1.4-.8-.7-1.4-1.6-1.6-1.9-.1-.3 0-.4.1-.5l.5-.5c.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.9-2c-.2-.5-.4-.5-.6-.5z" /></svg>
+                    Message us on WhatsApp
+                  </a>
+                  <a className="pk-slot-btn pk-slot-btn--mail" href={mailHref}>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M3 6.5h18v11H3z" /><path d="M3 7l9 6.5L21 7" /></svg>
+                    Email us
+                  </a>
+                </div>
+                <p className="pk-slot-contacts">
+                  <span>{brand.supportPhone}</span>
+                  <span className="dot" aria-hidden="true">&middot;</span>
+                  <span>{brand.supportEmail}</span>
+                </p>
+              </div>
+
+              {/* <ul className="pk-book-support" aria-label="What to expect">
                 <li>
                   <span className="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 12a8 8 0 1 1 2.3 5.6" /><path d="M4 20v-4h4" /></svg></span>
                   <span>Only reschedule if there is an emergency.</span>
-                </li>
-                {/* <li>
+                </li> 
+                 <li>
                   <span className="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 6.5h16v11H4z" /><path d="M4 7l8 6 8-6" /></svg></span>
                   <span>Video link by email, plus one WhatsApp reminder.</span>
                 </li>
                 <li>
                   <span className="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="8" r="3.4" /><path d="M5.5 19a6.5 6.5 0 0 1 13 0" /></svg></span>
                   <span>30 minutes, 1:1, directly with Palak.</span>
-                </li> */}
-              </ul>
+                </li> 
+               </ul> */}
 
               <div className="pk-book-more">
                 <span className="pk-book-more-kicker">Wait, <em>there is more.</em></span>

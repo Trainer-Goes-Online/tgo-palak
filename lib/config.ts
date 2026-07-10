@@ -30,6 +30,9 @@ export const siteUrl = (
 export const brand = {
   name: "FitWithPalak",
   supportEmail: "teamfitwithpalak@gmail.com",
+  /** Support phone shown to clients; display form + wa.me digits (country code, no + or spaces). */
+  supportPhone: "+91 88550 80369",
+  supportWhatsapp: "918855080369",
   /** Timezone used to format payment_date / payment_time in the Pabbly payload. */
   paymentTimezone: "Asia/Kolkata",
   /** Canonical site origin, e.g. https://vsl.palaksachdeva.com */

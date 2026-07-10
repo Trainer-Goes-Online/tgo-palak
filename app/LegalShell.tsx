@@ -28,7 +28,7 @@ export default function LegalShell({
       <header className="pk-nav">
         <div className="pk-nav-inner">
           <a className="pk-brand" href="/" aria-label="FitWithPalak home">
-            <span className="pk-brand-word">FitWith<em>Palak</em></span>
+            <img className="pk-brand-logo" src="/brand-logo.png" alt="FitWithPalak" />
           </a>
           <a className="pk-nav-cta" href="/checkout">Book My Clarity Call</a>
         </div>

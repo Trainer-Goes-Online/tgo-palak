@@ -29,7 +29,7 @@ export default function ThankYouPage() {
       <header className="pk-nav">
         <div className="pk-nav-inner">
           <a className="pk-brand" href="/" aria-label="FitWithPalak home">
-            <span className="pk-brand-word">FitWith<em>Palak</em></span>
+            <img className="pk-brand-logo" src="/brand-logo.png" alt="FitWithPalak" />
           </a>
           <span className="pk-nav-cta" aria-hidden="true">Booked</span>
         </div>
