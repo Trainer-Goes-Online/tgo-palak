@@ -378,7 +378,7 @@ export default function Page() {
             <div className="sec-head">
               <span className="eyebrow">What you get</span>
               <h2 className="display">Everything you get for just <span className="pk-vs-price">₹499</span>.</h2>
-              <p className="deck">A focused 1:1 assessment, your exact test list, and a private community of women doing the same work. Here is everything that is yours the moment you book.</p>
+              <p className="deck">A focused 1:1 assessment, a clear root cause analysis, and a private community of women doing the same work. Here is everything that is yours the moment you book.</p>
             </div>
 
             <div className="pk-vstack-grid">
@@ -394,13 +394,13 @@ export default function Page() {
                 </div>
               </article>
               <article className="pk-vs-card">
-                <img src="/value-stack/test_list.png" alt="Your Personal Test List, value ₹999" loading="lazy" />
+                <img src="/value-stack/rca.png" alt="Root Cause Analysis, value ₹999" loading="lazy" />
                 <div className="pk-vs-cap">
                   <div className="pk-vs-cap-top">
-                    <h3 className="pk-vs-name">Your Personal Test List</h3>
+                    <h3 className="pk-vs-name">Root Cause Analysis</h3>
                     <span className="pk-vs-val-pill">₹999</span>
                   </div>
-                  <p className="pk-vs-desc">A written list of the exact tests your case needs, so you stop wasting time and money on the wrong ones.</p>
+                  <p className="pk-vs-desc">On the call, we identify the root cause of your thyroid or hashimoto and explain it clearly to you.</p>
                   <span className="pk-vs-included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12.5l4 4 10-10.5" /></svg>Included</span>
                 </div>
               </article>
