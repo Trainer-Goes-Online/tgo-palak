@@ -12,6 +12,34 @@ import { captureTrackingParams } from "@/lib/tracking";
    - the VSL poster frame swaps to the real embed on play (when a src is wired)
    Everything degrades to visible, finished content without JS, and honors
    prefers-reduced-motion. */
+
+/** Build an embed URL that starts playing on its own, so our poster's play
+   button is the only click needed (the click itself is the user gesture that
+   lets the player start with sound). Handles Vimeo + YouTube, falls back to a
+   plain autoplay flag for anything else. */
+function buildEmbedSrc(raw: string): string {
+  try {
+    const u = new URL(raw);
+    const host = u.hostname;
+    if (host.includes("vimeo.com")) {
+      u.searchParams.set("autoplay", "1");
+      u.searchParams.set("playsinline", "1");
+      u.searchParams.set("title", "0");
+      u.searchParams.set("byline", "0");
+      u.searchParams.set("portrait", "0");
+    } else if (host.includes("youtube.com") || host.includes("youtu.be")) {
+      u.searchParams.set("autoplay", "1");
+      u.searchParams.set("playsinline", "1");
+      u.searchParams.set("rel", "0");
+    } else {
+      u.searchParams.set("autoplay", "1");
+    }
+    return u.toString();
+  } catch {
+    return raw;
+  }
+}
+
 export default function FunnelEffects({
   bookHref = "#book",
   sticky = true,
@@ -170,13 +198,14 @@ export default function FunnelEffects({
         video.play().catch(() => {});
         vsl.appendChild(video);
       } else {
-        // Embeddable player (YouTube/Vimeo) -> iframe.
+        // Embeddable player (Vimeo/YouTube) -> iframe, built to start playing
+        // straight away so the poster's play button is the only click needed.
         const frame = document.createElement("iframe");
         frame.className = "pk-vsl-frame";
-        frame.src = src;
+        frame.src = buildEmbedSrc(src);
         frame.title = "FitWithPalak clinical track video";
         frame.allow =
-          "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
+          "autoplay; fullscreen; picture-in-picture; encrypted-media; accelerometer; clipboard-write; gyroscope";
         frame.setAttribute("allowfullscreen", "");
         vsl.appendChild(frame);
       }
