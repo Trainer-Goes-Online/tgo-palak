@@ -41,7 +41,7 @@ export default function CheckoutPage() {
           <div className="wrap">
             <div className="sec-head">
               <span className="eyebrow">One step away</span>
-              <h2 className="display">You are one step away.</h2>
+              <h2 className="display">You are just one step away from finding the root cause of your thyroid issues</h2>
               <p className="deck">Confirm your details below and lock in your 30-minute Clarity Call with Palak.</p>
               <ul className="pk-trustrow" aria-label="Why this is safe">
                 <li>

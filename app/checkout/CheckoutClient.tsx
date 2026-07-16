@@ -81,6 +81,7 @@ export default function CheckoutClient({ priceInr, priceLabel }: { priceInr: num
   const [errors, setErrors] = useState<Partial<Record<keyof Fields, string>>>({});
   const [loading, setLoading] = useState(false);
   const [payError, setPayError] = useState("");
+  const [summaryOpen, setSummaryOpen] = useState(false); // mobile: collapsed by default
 
   const set = (k: keyof Fields) => (ev: React.ChangeEvent<HTMLInputElement>) =>
     setFields((f) => ({ ...f, [k]: ev.target.value }));
@@ -221,30 +222,61 @@ export default function CheckoutClient({ priceInr, priceLabel }: { priceInr: num
               </div>
             </div>
 
-            <aside className="pk-summary" aria-label="Order summary">
-              <p className="pk-summary-title">Order summary</p>
-              <div className="pk-summary-item">
-                <div>
-                  <p className="pk-summary-name">1:1 Clarity Call</p>
-                  <span className="pk-summary-meta">30-minute 1:1 with Palak</span>
-                </div>
-                <span className="pk-summary-fig">
-                  <span className="was">₹3,897</span>
-                  {priceLabel}
+            <aside className={`pk-summary${summaryOpen ? " is-open" : ""}`} aria-label="Order summary">
+              {/* Bar: static header on desktop, tap-to-expand on mobile */}
+              <button
+                type="button"
+                className="pk-summary-bar"
+                onClick={() => setSummaryOpen((o) => !o)}
+                aria-expanded={summaryOpen}
+                aria-controls="pk-summary-detail"
+              >
+                <span className="pk-summary-bar-l">
+                  <svg className="cart" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M6 6h15l-1.5 9h-12z" /><path d="M6 6L5 3H3" /><circle cx="9" cy="20" r="1.4" /><circle cx="18" cy="20" r="1.4" /></svg>
+                  <span className="pk-summary-bar-label">Order summary</span>
+                  <span className="pk-summary-bar-toggle">{summaryOpen ? "Hide" : "Show"} details</span>
                 </span>
-              </div>
-              <div className="pk-summary-total">
-                <span className="lbl">Total due today</span>
-                <span className="amt">{priceLabel}</span>
-              </div>
-              <div className="pk-paymethods" aria-label="Accepted payment methods">
-                <span className="lbl">Accepted payment methods</span>
-                <span className="pk-pay-icon"><img src="/assets/pay/upi.svg" alt="UPI" loading="lazy" /></span>
-                <span className="pk-pay-icon"><img src="/assets/pay/visa.svg" alt="Visa" loading="lazy" /></span>
-                <span className="pk-pay-icon"><img src="/assets/pay/mastercard.svg" alt="Mastercard" loading="lazy" /></span>
-                <span className="pk-pay-icon"><img src="/assets/pay/rupay.svg" alt="RuPay" loading="lazy" /></span>
-                <span className="pk-pay-icon"><img src="/assets/pay/amex.svg" alt="American Express" loading="lazy" /></span>
-                <span className="pk-pay-icon"><img src="/assets/pay/netbanking.svg" alt="Net Banking" loading="lazy" /></span>
+                <span className="pk-summary-bar-r">
+                  <span className="pk-summary-bar-amt">{priceLabel}</span>
+                  <svg className="pk-summary-chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 8l5 5 5-5" /></svg>
+                </span>
+              </button>
+
+              <div className="pk-summary-detail" id="pk-summary-detail">
+                <p className="pk-summary-eyebrow">Everything you get for {priceLabel}</p>
+                <ul className="pk-summary-stack">
+                  <li>
+                    <span className="pk-ss-name">30-Minute Clarity Call <em>with Palak</em></span>
+                    <span className="pk-ss-val">₹1,999</span>
+                  </li>
+                  <li>
+                    <span className="pk-ss-name">Root Cause Analysis</span>
+                    <span className="pk-ss-val">₹999</span>
+                  </li>
+                  <li>
+                    <span className="pk-ss-name">The FitWithPalak Community</span>
+                    <span className="pk-ss-val">₹899</span>
+                  </li>
+                </ul>
+                <div className="pk-summary-value">
+                  <span className="lbl">Total value</span>
+                  <span className="fig strike">₹3,897</span>
+                </div>
+                <div className="pk-summary-total">
+                  <span className="lbl">You pay today</span>
+                  <span className="amt">{priceLabel}</span>
+                </div>
+                <p className="pk-summary-save">You save ₹3,398 &middot; 87% off today</p>
+
+                <div className="pk-paymethods" aria-label="Accepted payment methods">
+                  <span className="lbl">Accepted payment methods</span>
+                  <span className="pk-pay-icon"><img src="/assets/pay/upi.svg" alt="UPI" loading="lazy" /></span>
+                  <span className="pk-pay-icon"><img src="/assets/pay/visa.svg" alt="Visa" loading="lazy" /></span>
+                  <span className="pk-pay-icon"><img src="/assets/pay/mastercard.svg" alt="Mastercard" loading="lazy" /></span>
+                  <span className="pk-pay-icon"><img src="/assets/pay/rupay.svg" alt="RuPay" loading="lazy" /></span>
+                  <span className="pk-pay-icon"><img src="/assets/pay/amex.svg" alt="American Express" loading="lazy" /></span>
+                  <span className="pk-pay-icon"><img src="/assets/pay/netbanking.svg" alt="Net Banking" loading="lazy" /></span>
+                </div>
               </div>
             </aside>
           </div>
