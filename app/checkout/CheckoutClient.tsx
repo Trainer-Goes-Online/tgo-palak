@@ -2,6 +2,35 @@
 
 import { useState } from "react";
 import { restoreUtm, restoreFbclid } from "@/lib/tracking";
+import { trackGa4EventOnce } from "@/lib/ga4";
+
+/** SHA-256 hex of a string (Web Crypto; secure context = https or localhost). */
+async function sha256Hex(value: string): Promise<string> {
+  const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(value));
+  return Array.from(new Uint8Array(buf))
+    .map((b) => b.toString(16).padStart(2, "0"))
+    .join("");
+}
+
+/** Meta InitiateCheckout (server CAPI) — once per email per browser. Never blocks pay. */
+async function fireMetaInitiateCheckout(customer: {
+  firstName: string; lastName: string; email: string; city: string; phone: string; countryCode: string; dialCode: string;
+}): Promise<void> {
+  try {
+    const emailHash = await sha256Hex(customer.email.trim().toLowerCase());
+    if (localStorage.getItem("fwp_ic_fired") === emailHash) return;
+    const res = await fetch("/api/meta/initiate-checkout", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ customer, eventSourceUrl: window.location.href }),
+    });
+    if (res.ok) {
+      try { localStorage.setItem("fwp_ic_fired", emailHash); } catch { /* ignore */ }
+    }
+  } catch {
+    /* analytics must never block the payment */
+  }
+}
 
 declare global {
   interface Window {
@@ -60,6 +89,9 @@ export default function CheckoutClient({ priceInr, priceLabel }: { priceInr: num
 
   async function handlePay() {
     setPayError("");
+    // GA4 initiate_checkout: fires on the FIRST pay-button click, BEFORE
+    // validation (the signal is "attempted to pay"). Once per browser.
+    trackGa4EventOnce("initiate_checkout");
     const errs = validate(fields);
     setErrors(errs);
     if (Object.keys(errs).length > 0) {
@@ -71,6 +103,18 @@ export default function CheckoutClient({ priceInr, priceLabel }: { priceInr: num
     try {
       const ok = await loadRazorpay();
       if (!ok) throw new Error("Could not load the payment window. Please try again.");
+
+      // Meta InitiateCheckout (server CAPI): validated form, right before
+      // create-order. Full hashed PII. Once per email. Never blocks payment.
+      await fireMetaInitiateCheckout({
+        firstName: fields.fname.trim(),
+        lastName: fields.lname.trim(),
+        email: fields.email.trim(),
+        city: fields.city.trim(),
+        phone: fields.phone.trim(),
+        countryCode: country.iso,
+        dialCode: country.dial,
+      });
 
       const res = await fetch("/api/razorpay/create-order", {
         method: "POST",

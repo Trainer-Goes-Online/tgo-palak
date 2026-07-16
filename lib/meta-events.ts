@@ -1,0 +1,136 @@
+import crypto from "crypto";
+import { sha256 } from "./meta-capi";
+
+// ============================================================================
+// Meta CAPI — two upper-funnel intent events fired from their own API routes
+// (independent of the Razorpay webhook that fires the "sales" conversion):
+//   - AddToCart       -> landing CTA click   (fbc/fbp/IP/UA only; no PII yet)
+//   - InitiateCheckout -> checkout pay click  (full hashed PII, EMQ 9+)
+//
+// Standard Meta event names are used because this dataset is NOT (yet) in a
+// Meta restricted category. We still mirror the existing "sales" event's
+// privacy posture: PHI-free custom_data (value + currency only, no product
+// name that could hint at a health condition) and a host-only event_source_url.
+// ============================================================================
+
+const GRAPH_VERSION = "v25.0";
+const URL_FALLBACK = "https://vsl.palaksachdeva.com";
+
+/** Reduce any URL to its origin so no path/query reaches Meta. */
+function toOrigin(url: string): string {
+  try {
+    return new URL(url).origin;
+  } catch {
+    return URL_FALLBACK;
+  }
+}
+
+async function postEvent(
+  pixelId: string,
+  accessToken: string,
+  event: Record<string, unknown>
+): Promise<void> {
+  const res = await fetch(
+    `https://graph.facebook.com/${GRAPH_VERSION}/${pixelId}/events?access_token=${accessToken}`,
+    {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ data: [event] }),
+    }
+  );
+  if (!res.ok) {
+    const err = await res.json().catch(() => ({}));
+    throw new Error(JSON.stringify(err));
+  }
+}
+
+/** AddToCart — intent signal at CTA click. No PII available at this point. */
+export async function sendAddToCartEvent(params: {
+  pixelId: string;
+  accessToken: string;
+  fbc?: string;
+  fbp?: string;
+  clientIp?: string;
+  clientUserAgent?: string;
+  eventSourceUrl: string;
+  value: number;
+  currency: string;
+}): Promise<void> {
+  const eventId = params.fbp
+    ? sha256(`${params.fbp}|atc`)
+    : `${crypto.randomBytes(16).toString("hex")}_atc`;
+
+  const event = {
+    event_name: "AddToCart",
+    event_time: Math.floor(Date.now() / 1000),
+    event_id: eventId,
+    action_source: "website" as const,
+    event_source_url: toOrigin(params.eventSourceUrl),
+    user_data: {
+      ...(params.fbc && { fbc: params.fbc }),
+      ...(params.fbp && { fbp: params.fbp }),
+      ...(params.clientUserAgent && { client_user_agent: params.clientUserAgent }),
+      ...(params.clientIp && { client_ip_address: params.clientIp }),
+    },
+    custom_data: { currency: params.currency, value: params.value },
+  };
+
+  await postEvent(params.pixelId, params.accessToken, event);
+}
+
+/** InitiateCheckout — full hashed PII (same derivation as the sales event). */
+export async function sendInitiateCheckoutEvent(params: {
+  pixelId: string;
+  accessToken: string;
+  email: string;
+  phone: string; // dial code + number, raw
+  firstName: string;
+  lastName: string;
+  city: string;
+  countryCode: string; // 2-letter ISO
+  fbc?: string;
+  fbp?: string;
+  clientIp?: string;
+  clientUserAgent?: string;
+  eventSourceUrl: string;
+  value: number;
+  currency: string;
+}): Promise<void> {
+  const normalisedEmail = params.email.trim().toLowerCase();
+  const hashedEmail = normalisedEmail ? sha256(normalisedEmail) : undefined;
+  const externalId = hashedEmail;
+
+  const rawPhone = params.phone.replace(/\D/g, "");
+  const hashedPhone = rawPhone ? sha256(rawPhone) : undefined;
+
+  const fn = params.firstName.trim().toLowerCase();
+  const ln = params.lastName.trim().toLowerCase();
+  const ct = params.city.trim().toLowerCase().replace(/[^a-z]/g, "");
+  const country = params.countryCode.trim().toLowerCase();
+
+  const event = {
+    event_name: "InitiateCheckout",
+    event_time: Math.floor(Date.now() / 1000),
+    event_id: hashedEmail
+      ? sha256(`${normalisedEmail}|ic`)
+      : `${crypto.randomBytes(16).toString("hex")}_ic`,
+    action_source: "website" as const,
+    event_source_url: toOrigin(params.eventSourceUrl),
+    user_data: {
+      ...(hashedEmail && { em: [hashedEmail] }),
+      ...(hashedPhone && { ph: [hashedPhone] }),
+      ...(fn && { fn: [sha256(fn)] }),
+      ...(ln && { ln: [sha256(ln)] }),
+      ...(ct && { ct: [sha256(ct)] }),
+      ...(country && { country: [sha256(country)] }),
+      ...(externalId && { external_id: [externalId] }),
+      ...(params.fbc && { fbc: params.fbc }),
+      ...(params.fbp && { fbp: params.fbp }),
+      ...(params.clientUserAgent && { client_user_agent: params.clientUserAgent }),
+      ...(params.clientIp && { client_ip_address: params.clientIp }),
+    },
+    custom_data: { currency: params.currency, value: params.value },
+  };
+
+  await postEvent(params.pixelId, params.accessToken, event);
+}

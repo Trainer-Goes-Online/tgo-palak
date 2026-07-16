@@ -2,6 +2,32 @@
 
 import { useEffect, useRef } from "react";
 import { captureTrackingParams } from "@/lib/tracking";
+import { trackGa4EventOnce } from "@/lib/ga4";
+
+/** Meta AddToCart (server CAPI) — once per browser, survives navigation. */
+function fireMetaAddToCartOnce(): void {
+  try {
+    if (window.localStorage.getItem("fwp_atc_fired") === "1") return;
+    window.localStorage.setItem("fwp_atc_fired", "1"); // optimistic
+  } catch {
+    /* private mode — best-effort, continue */
+  }
+  const body = JSON.stringify({ eventSourceUrl: window.location.href });
+  try {
+    if (navigator.sendBeacon) {
+      navigator.sendBeacon("/api/meta/add-to-cart", new Blob([body], { type: "application/json" }));
+      return;
+    }
+  } catch {
+    /* fall through to fetch */
+  }
+  fetch("/api/meta/add-to-cart", {
+    method: "POST",
+    body,
+    keepalive: true,
+    headers: { "Content-Type": "application/json" },
+  }).catch(() => {});
+}
 
 /* Client-side conversion polish for the FitWithPalak Clinical Track page:
    - a top scroll-progress rail
@@ -184,6 +210,7 @@ export default function FunnelEffects({
       const src = vsl.getAttribute("data-video-src");
       if (!src) return; // no video wired yet -> keep the clean poster frame
       vsl.classList.add("playing");
+      trackGa4EventOnce("video_play"); // hero VSL starts (once per browser)
       const isFile = /\.(mp4|webm|mov|m4v)(\?|$)/i.test(src);
       if (isFile) {
         // Direct video file (our DigitalOcean CDN) -> HTML5 <video> player.
@@ -258,6 +285,27 @@ export default function FunnelEffects({
     const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") closeCase(); };
     document.addEventListener("keydown", onKey);
 
+    // --- Analytics triggers (GA4 native + Meta AddToCart CAPI), delegated so
+    //     they catch every CTA including the sticky bar (rendered by this comp).
+    // Any CTA that advances to /checkout -> GA4 add_to_cart + Meta AddToCart.
+    const onCtaClick = (e: MouseEvent) => {
+      const link = (e.target as HTMLElement | null)?.closest?.('a[href="/checkout"]');
+      if (!link) return;
+      trackGa4EventOnce("add_to_cart");
+      fireMetaAddToCartOnce();
+    };
+    document.addEventListener("click", onCtaClick);
+
+    // Calendly booking completion (book-a-call page) -> GA4 book_call.
+    const onCalendlyMessage = (e: MessageEvent) => {
+      if (typeof e.origin !== "string" || !e.origin.endsWith("calendly.com")) return;
+      const data = e.data as { event?: string } | undefined;
+      if (data && data.event === "calendly.event_scheduled") {
+        trackGa4EventOnce("book_call");
+      }
+    };
+    window.addEventListener("message", onCalendlyMessage);
+
     update();
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onResize);
@@ -272,6 +320,8 @@ export default function FunnelEffects({
         el.removeEventListener("keydown", onKeydown);
       });
       document.removeEventListener("keydown", onKey);
+      document.removeEventListener("click", onCtaClick);
+      window.removeEventListener("message", onCalendlyMessage);
     };
   }, []);
 
